@@ -149,8 +149,8 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
               </div>
               
               {/* Terminal Content */}
-              <div className="p-8 font-mono text-base">
-                <div className="flex items-center mb-4">
+              <div className="p-6 font-mono text-sm">
+                <div className="flex items-center mb-3">
                   <span className="text-blue-400 font-medium">abdullah@portfolio:~$</span>
                   <motion.span
                     animate={{ opacity: [1, 0, 1] }}
@@ -160,20 +160,20 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
                     start-conversation
                   </motion.span>
                 </div>
-                <div className="text-emerald-300 mb-4 text-lg font-medium text-center">
-                  🚀 Interactive Terminal Experience
+                <div className="text-emerald-300 mb-3 text-base font-medium text-center">
+                  🚀 Interactive Terminal
                 </div>
-                <div className="text-slate-400 text-sm text-center mb-4">
-                  Commands: <span className="text-yellow-400">whoami, skills, projects, experience, help</span>
+                <div className="text-slate-400 text-xs text-center mb-3">
+                  Commands: <span className="text-yellow-400">whoami, skills, projects, help</span>
                 </div>
                 <div className="flex items-center justify-center">
                   <motion.div
                     animate={{ x: [0, 4, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-6 py-2 rounded-lg font-semibold text-sm flex items-center space-x-2"
+                    className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-lg font-semibold text-xs flex items-center space-x-2"
                   >
                     <span>Click to start</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-3 h-3" />
                   </motion.div>
                 </div>
               </div>
