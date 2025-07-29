@@ -1,20 +1,82 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ThemeProvider } from './components/ThemeProvider';
+import LoadingScreen from './components/LoadingScreen';
+import Navbar from './components/Navbar';
+import Terminal from './components/Terminal';
+import Hero from './components/Hero';
+import About from './components/About';
+import InteractiveSkills from './components/InteractiveSkills';
+import Experience from './components/Experience';
+import ProjectCarousel from './components/ProjectCarousel';
+import Education from './components/Education';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
+  const toggleTerminal = () => {
+    setIsTerminalOpen(!isTerminalOpen);
+  };
+
+  // Smooth scrolling for anchor links
+  useEffect(() => {
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLAnchorElement;
+      if (target.hash) {
+        e.preventDefault();
+        const element = document.querySelector(target.hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    };
+
+    document.addEventListener('click', handleAnchorClick);
+    return () => document.removeEventListener('click', handleAnchorClick);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white p-8">
-      <h1 className="text-4xl font-bold text-blue-600 mb-4">
-        Test - Abdullah Uzair Portfolio
-      </h1>
-      <p className="text-lg text-gray-700">
-        If you can see this, the basic React app is working. Let me gradually add components back.
-      </p>
-      <div className="mt-8 p-4 bg-blue-100 rounded-lg">
-        <p className="text-blue-800">
-          ✅ React is rendering successfully
-        </p>
+    <ThemeProvider>
+      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+        <AnimatePresence mode="wait">
+          {isLoading ? (
+            <LoadingScreen key="loading" onLoadingComplete={handleLoadingComplete} />
+          ) : (
+            <motion.div
+              key="main"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Navbar onTerminalToggle={toggleTerminal} />
+              <AnimatePresence>
+                {isTerminalOpen && (
+                  <Terminal
+                    isOpen={isTerminalOpen}
+                    onClose={() => setIsTerminalOpen(false)}
+                  />
+                )}
+              </AnimatePresence>
+              <Hero onTerminalToggle={toggleTerminal} />
+              <About />
+              <InteractiveSkills />
+              <Experience />
+              <ProjectCarousel />
+              <Education />
+              <Contact />
+              <Footer />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
