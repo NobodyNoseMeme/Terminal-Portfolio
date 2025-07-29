@@ -343,7 +343,7 @@ const ProjectCarousel: React.FC = () => {
         </motion.div>
       </div>
 
-      <style jsx global>{`
+      <style>{`
         .project-swiper .swiper-pagination-bullet {
           background: #3b82f6;
           opacity: 0.5;
