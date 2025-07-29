@@ -102,7 +102,7 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
           >
             <motion.div
               onClick={onTerminalToggle}
-              className="inline-block bg-gray-900 dark:bg-black rounded-xl shadow-2xl cursor-pointer border border-gray-700 overflow-hidden max-w-4xl w-full mx-auto"
+              className="inline-block bg-gray-900 dark:bg-black rounded-xl shadow-2xl cursor-pointer border border-gray-700 overflow-hidden max-w-5xl w-full mx-auto"
               whileHover={{ scale: 1.02, y: -5 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -122,24 +122,24 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
               </div>
               
               {/* Terminal Content */}
-              <div className="p-8 font-mono text-lg">
-                <div className="flex items-center mb-2">
-                  <span className="text-blue-400">abdullah@portfolio:~$</span>
+              <div className="p-10 font-mono text-xl">
+                <div className="flex items-center mb-4">
+                  <span className="text-blue-400 text-xl">abdullah@portfolio:~$</span>
                   <motion.span
                     animate={{ opacity: [1, 0, 1] }}
                     transition={{ duration: 1, repeat: Infinity }}
-                    className="ml-2 text-white"
+                    className="ml-2 text-white text-xl"
                   >
                     whoami
                   </motion.span>
                 </div>
-                <div className="text-green-300 mb-4 text-2xl font-bold">
-                  🤖 Click here to interact with AbduBot Terminal!
+                <div className="text-green-300 mb-6 text-3xl font-bold text-center">
+                  🤖 CLICK TO INTERACT WITH ABDUBOT TERMINAL!
                 </div>
-                <div className="text-gray-400 text-base mb-3">
+                <div className="text-gray-400 text-lg mb-4 text-center">
                   Try commands: whoami, skills, projects, experience, help
                 </div>
-                <div className="text-yellow-400 text-lg animate-pulse font-semibold">
+                <div className="text-yellow-400 text-xl animate-pulse font-bold text-center bg-yellow-400/10 py-3 px-6 rounded-lg border border-yellow-400/20">
                   ▶ Interactive terminal experience awaits! Click to start!
                 </div>
               </div>
