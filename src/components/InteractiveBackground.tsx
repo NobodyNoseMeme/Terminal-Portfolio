@@ -155,7 +155,7 @@ const InteractiveBackground: React.FC = () => {
           }}
         >
           <div
-            className="w-1 h-1 rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20"
+            className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400/40 to-purple-400/40"
             style={{
               transform: `scale(${Math.random() * 2 + 1})`,
             }}
