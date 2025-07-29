@@ -11,7 +11,7 @@ const CustomCursor: React.FC = () => {
       
       // Add trail point with higher frequency for smoother trails
       const newTrail = { x: e.clientX, y: e.clientY, id: Date.now() };
-      setTrails(prev => [...prev.slice(-3), newTrail]); // Keep last 3 trail points for smoother performance
+      setTrails(prev => [...prev.slice(-5), newTrail]); // Keep last 5 trail points for smoother performance
     };
 
     window.addEventListener('mousemove', updateMousePosition);
@@ -24,8 +24,8 @@ const CustomCursor: React.FC = () => {
   // Clean up old trail points very frequently for smooth performance
   useEffect(() => {
     const cleanup = setInterval(() => {
-      setTrails(prev => prev.slice(-2));
-    }, 16); // 60fps cleanup
+      setTrails(prev => prev.slice(-3));
+    }, 8); // 120fps cleanup for ultra smooth performance
 
     return () => clearInterval(cleanup);
   }, []);
@@ -41,9 +41,9 @@ const CustomCursor: React.FC = () => {
         }}
         transition={{
           type: "spring",
-          damping: 30,
-          stiffness: 800,
-          mass: 0.5
+          damping: 40,
+          stiffness: 1200,
+          mass: 0.3
         }}
         style={{
           position: 'fixed',
@@ -69,14 +69,14 @@ const CustomCursor: React.FC = () => {
             y: trail.y - 3,
           }}
           transition={{
-            duration: 0.2,
+            duration: 0.15,
             ease: "easeOut",
           }}
           style={{
             position: 'fixed',
             width: '6px',
             height: '6px',
-            background: `rgba(59, 130, 246, ${0.6 - index * 0.2})`,
+            background: `rgba(59, 130, 246, ${0.7 - index * 0.15})`,
             borderRadius: '50%',
             pointerEvents: 'none',
             zIndex: 99998,
