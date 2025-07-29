@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './components/ThemeProvider';
 import CustomCursor from './components/CustomCursor';
+import InteractiveBackground from './components/InteractiveBackground';
 import LoadingScreen from './components/LoadingScreen';
 import Navbar from './components/Navbar';
 import Terminal from './components/Terminal';
