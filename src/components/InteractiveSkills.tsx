@@ -4,3 +4,4 @@ const error = {
   providerLimitHit: false,
   isRetryable: true,
 };
+export default InteractiveSkills;
