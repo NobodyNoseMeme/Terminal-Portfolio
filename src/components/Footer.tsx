@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, ChevronUp, Github, Linkedin, Mail } from 'lucide-react';
+import { ChevronUp, Github, Linkedin, Mail } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -107,16 +107,8 @@ const Footer: React.FC = () => {
 
         {/* Copyright */}
         <div className="text-center pt-8 border-t border-gray-200 dark:border-gray-700">
-          <p className="text-gray-600 dark:text-gray-400 flex items-center justify-center">
-            © 2025 Muhammad Abdullah Uzair. Made with{' '}
-            <motion.span
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 1, repeat: Infinity }}
-              className="mx-1"
-            >
-              <Heart className="w-4 h-4 text-red-500 fill-current" />
-            </motion.span>
-            {' '}and passion for great code.
+          <p className="text-gray-600 dark:text-gray-400">
+            © 2025 Muhammad Abdullah Uzair. Made with passion for great code.
           </p>
         </div>
 

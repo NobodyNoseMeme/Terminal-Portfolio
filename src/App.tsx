@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './components/ThemeProvider';
 import CustomCursor from './components/CustomCursor';
+import InteractiveBackground from './components/InteractiveBackground';
 import LoadingScreen from './components/LoadingScreen';
 import Navbar from './components/Navbar';
 import Terminal from './components/Terminal';
@@ -46,7 +47,8 @@ function App() {
   return (
     <ThemeProvider>
       <CustomCursor />
-      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+      <InteractiveBackground />
+      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300 relative z-10">
         <AnimatePresence mode="wait">
           {isLoading ? (
             <LoadingScreen key="loading" onLoadingComplete={handleLoadingComplete} />
@@ -60,9 +62,9 @@ function App() {
               <Navbar onTerminalToggle={toggleTerminal} />
               <AnimatePresence>
                 {isTerminalOpen && (
-                  <Terminal 
-                    isOpen={isTerminalOpen} 
-                    onClose={() => setIsTerminalOpen(false)} 
+                  <Terminal
+                    isOpen={isTerminalOpen}
+                    onClose={() => setIsTerminalOpen(false)}
                   />
                 )}
               </AnimatePresence>

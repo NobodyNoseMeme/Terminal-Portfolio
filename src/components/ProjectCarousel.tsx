@@ -145,9 +145,9 @@ const ProjectCarousel: React.FC = () => {
               slideShadows: true,
             }}
             navigation={true}
-            pagination={{ 
+            pagination={{
               clickable: true,
-              dynamicBullets: true 
+              dynamicBullets: true
             }}
             autoplay={{
               delay: 5000,
@@ -343,7 +343,7 @@ const ProjectCarousel: React.FC = () => {
         </motion.div>
       </div>
 
-      <style jsx global>{`
+      <style>{`
         .project-swiper .swiper-pagination-bullet {
           background: #3b82f6;
           opacity: 0.5;

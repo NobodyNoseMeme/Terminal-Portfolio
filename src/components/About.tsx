@@ -38,7 +38,7 @@ const About: React.FC = () => {
       };
 
       animateCounter(3.6, 'cgpa');
-      animateCounter(10, 'projects');
+      animateCounter(5, 'projects');
       animateCounter(3, 'experience');
     }
   }, [isInView]);
@@ -186,7 +186,7 @@ const About: React.FC = () => {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
-                  20+
+                  5+
                 </div>
                 <div className="text-sm font-medium text-gray-600 dark:text-gray-300">Projects</div>
               </motion.div>
@@ -196,7 +196,7 @@ const About: React.FC = () => {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
-                  5+
+                  1+
                 </div>
                 <div className="text-sm font-medium text-gray-600 dark:text-gray-300">Years Exp</div>
               </motion.div>

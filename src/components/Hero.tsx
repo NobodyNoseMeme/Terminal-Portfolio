@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, Github, Linkedin, Mail, Terminal } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, Terminal, ArrowRight, Sparkles } from 'lucide-react';
 
 interface HeroProps {
   onTerminalToggle: () => void;
@@ -8,7 +8,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
   const [text, setText] = useState('');
-  const fullText = "Hi, I'm Muhammad Abdullah";
+  const fullText = "Abdullah Uzair";
   
   useEffect(() => {
     let index = 0;
@@ -18,7 +18,7 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
       if (index > fullText.length) {
         clearInterval(timer);
       }
-    }, 50);
+    }, 80);
     
     return () => clearInterval(timer);
   }, []);
@@ -34,17 +34,19 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
     }
   };
 
-  // Particle animation
-  const particles = Array.from({ length: 50 }, (_, i) => i);
-
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20">
-      {/* Animated Background Particles */}
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/40 dark:from-slate-900 dark:via-slate-800/90 dark:to-slate-900 pt-20">
+      {/* Minimalist Background Elements */}
       <div className="absolute inset-0">
-        {particles.map((particle) => (
+        {/* Subtle gradient orbs */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-400/10 rounded-full blur-3xl"></div>
+        
+        {/* Minimal floating particles */}
+        {Array.from({ length: 12 }, (_, i) => (
           <motion.div
-            key={particle}
-            className="absolute w-2 h-2 bg-blue-400/30 rounded-full"
+            key={i}
+            className="absolute w-1 h-1 bg-blue-400/20 rounded-full"
             initial={{
               x: Math.random() * window.innerWidth,
               y: Math.random() * window.innerHeight,
@@ -53,10 +55,10 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
             animate={{
               x: Math.random() * window.innerWidth,
               y: Math.random() * window.innerHeight,
-              opacity: [0, 1, 0],
+              opacity: [0, 0.6, 0],
             }}
             transition={{
-              duration: Math.random() * 20 + 10,
+              duration: Math.random() * 15 + 10,
               repeat: Infinity,
               repeatType: 'reverse',
             }}
@@ -64,166 +66,191 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
         ))}
       </div>
 
-      {/* Gradient Orbs */}
-      <div className="absolute top-20 left-20 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-8"
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="space-y-8"
         >
-          <div className="mb-6">
-          </div>
+
           
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-gray-100 mb-6 leading-tight mt-20">
-            Hi, I'm Muhammad Abdullah
-            <motion.span
-              animate={{ opacity: [0, 1, 0] }}
-              transition={{ duration: 1, repeat: Infinity }}
-              className="text-blue-600 dark:text-blue-400"
+          {/* Main heading with elegant typography */}
+          <div className="space-y-4">
+            <motion.h1
+              className="text-3xl md:text-5xl lg:text-6xl font-light text-slate-900 dark:text-slate-100 tracking-tight leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
             >
-              
-            </motion.span>
-            <br />
-            <span className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300">
-              Software Engineering student & Full-Stack Web Developer
-            </span>
-          </h1>
-          
-          {/* Terminal Interface */}
+              Hi, I'm{' '}
+              <span className="font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                {text}
+                <motion.span
+                  animate={{ opacity: [0, 1, 0] }}
+                  transition={{ duration: 1.2, repeat: Infinity }}
+                  className="text-blue-500"
+                >
+                  |
+                </motion.span>
+              </span>
+            </motion.h1>
+            
+            <motion.p 
+              className="text-xl md:text-2xl font-light text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+            >
+              Software Engineering Student & Full-Stack Developer
+              <br />
+              <span className="text-lg text-slate-500 dark:text-slate-400 font-normal">
+                Crafting digital experiences with modern technologies
+              </span>
+            </motion.p>
+          </div>
+
+          {/* Elegant Terminal Interface */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="mb-8 mt-8"
+            transition={{ delay: 1, duration: 0.8 }}
+            className="mt-12"
           >
             <motion.div
               onClick={onTerminalToggle}
-              className="inline-block bg-gray-900 dark:bg-black rounded-xl shadow-2xl cursor-pointer border border-gray-700 overflow-hidden max-w-4xl w-full mx-auto"
-              whileHover={{ scale: 1.02, y: -5 }}
+              className="inline-block bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-sm rounded-2xl shadow-2xl cursor-pointer border border-slate-800 dark:border-slate-700 overflow-hidden max-w-xl w-full mx-auto hover:shadow-blue-500/10 transition-all duration-500"
+              whileHover={{ scale: 1.02, y: -8 }}
               whileTap={{ scale: 0.98 }}
             >
               {/* Terminal Header */}
-              <div className="flex items-center justify-between px-4 py-2 bg-gray-800 dark:bg-gray-900 border-b border-gray-700">
-                <div className="flex items-center space-x-2">
+              <div className="flex items-center justify-between px-6 py-4 bg-slate-800/50 border-b border-slate-700">
+                <div className="flex items-center space-x-3">
                   <div className="flex space-x-2">
                     <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                     <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   </div>
                   <div className="flex items-center ml-4">
-                    <Terminal className="w-4 h-4 text-green-400 mr-2" />
-                    <span className="text-green-400 font-mono text-sm">AbduBot Terminal</span>
+                    <Terminal className="w-4 h-4 text-emerald-400 mr-2" />
+                    <span className="text-emerald-400 font-mono text-sm font-medium">AbduBot Terminal</span>
                   </div>
                 </div>
               </div>
               
               {/* Terminal Content */}
-              <div className="p-8 font-mono text-lg">
-                <div className="flex items-center mb-2">
-                  <span className="text-blue-400">abdullah@portfolio:~$</span>
+              <div className="p-6 font-mono text-sm">
+                <div className="flex items-center mb-3">
+                  <span className="text-blue-400 font-medium">abdullah@portfolio:~$</span>
                   <motion.span
                     animate={{ opacity: [1, 0, 1] }}
-                    transition={{ duration: 1, repeat: Infinity }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
                     className="ml-2 text-white"
                   >
-                    whoami
+                    start-conversation
                   </motion.span>
                 </div>
-                <div className="text-green-300 mb-4 text-2xl font-bold">
-                  🤖 Click here to interact with AbduBot Terminal!
+                <div className="text-emerald-300 mb-3 text-base font-medium text-center">
+                  🚀 Interactive Terminal
                 </div>
-                <div className="text-gray-400 text-base mb-3">
-                  Try commands: whoami, skills, projects, experience, help
+                <div className="text-slate-400 text-xs text-center mb-3">
+                  Commands: <span className="text-yellow-400">whoami, skills, projects, help</span>
                 </div>
-                <div className="text-yellow-400 text-lg animate-pulse font-semibold">
-                  ▶ Interactive terminal experience awaits! Click to start!
+                <div className="flex items-center justify-center">
+                  <motion.div
+                    animate={{ x: [0, 4, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-lg font-semibold text-xs flex items-center space-x-2"
+                  >
+                    <span>Click to start</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
           </motion.div>
-          
 
+          {/* Elegant CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+            transition={{ delay: 1.3, duration: 0.8 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-12"
           >
             <motion.button
               onClick={() => scrollToSection('projects')}
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)" }}
+              className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 flex items-center space-x-2"
+              whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              View My Work
+              <span>Explore My Work</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </motion.button>
             
             <motion.button
               onClick={() => scrollToSection('contact')}
-              className="px-8 py-4 border-2 border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 rounded-full font-semibold text-lg hover:bg-blue-600 hover:text-white dark:hover:bg-blue-400 dark:hover:text-gray-900 transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
+              className="px-8 py-4 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-xl font-semibold text-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300"
+              whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              Contact Me
+              Get In Touch
             </motion.button>
           </motion.div>
 
+          {/* Social Links */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2, duration: 0.8 }}
-            className="flex justify-center space-x-6 mb-12"
+            transition={{ delay: 1.5, duration: 0.8 }}
+            className="flex justify-center space-x-6 mt-8"
           >
             <motion.a
               href="https://www.linkedin.com/in/abdullah-uzair-2a18b9278/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{ scale: 1.1, y: -2 }}
+              className="p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-blue-600 hover:text-blue-700"
+              whileHover={{ scale: 1.1, y: -3 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Linkedin className="w-6 h-6 text-blue-600" />
+              <Linkedin className="w-6 h-6" />
             </motion.a>
             
             <motion.a
               href="https://github.com/mabdullahuzair/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{ scale: 1.1, y: -2 }}
+              className="p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100"
+              whileHover={{ scale: 1.1, y: -3 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Github className="w-6 h-6 text-gray-800 dark:text-gray-200" />
+              <Github className="w-6 h-6" />
             </motion.a>
             
             <motion.a
               href="mailto:abdullahuzair860@gmail.com"
-              className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{ scale: 1.1, y: -2 }}
+              className="p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-red-600 hover:text-red-700"
+              whileHover={{ scale: 1.1, y: -3 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Mail className="w-6 h-6 text-red-600" />
+              <Mail className="w-6 h-6" />
             </motion.a>
           </motion.div>
         </motion.div>
 
+        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2.5, duration: 0.8 }}
+          transition={{ delay: 2, duration: 0.8 }}
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
-            animate={{ y: [0, 10, 0] }}
+            animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
             className="cursor-pointer"
             onClick={() => scrollToSection('about')}
           >
-            <ChevronDown className="w-8 h-8 text-gray-600 dark:text-gray-400" />
+            <ChevronDown className="w-6 h-6 text-slate-500 dark:text-slate-400" />
           </motion.div>
         </motion.div>
       </div>
