@@ -132,36 +132,39 @@ const ProjectCarousel: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <Swiper
-            modules={[Navigation, Pagination, EffectCoverflow, Autoplay]}
-            spaceBetween={30}
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={24}
             slidesPerView={1}
             centeredSlides={true}
-            effect="coverflow"
-            coverflowEffect={{
-              rotate: 15,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: true,
-            }}
+            loop={true}
             navigation={true}
-            pagination={{ 
+            pagination={{
               clickable: true,
-              dynamicBullets: true 
+              dynamicBullets: true
             }}
             autoplay={{
-              delay: 5000,
+              delay: 3000,
               disableOnInteraction: false,
+              pauseOnMouseEnter: true,
             }}
+            speed={800}
+            grabCursor={true}
             breakpoints={{
               640: {
-                slidesPerView: 1,
+                slidesPerView: 1.2,
+                spaceBetween: 20,
               },
               768: {
-                slidesPerView: 2,
+                slidesPerView: 1.5,
+                spaceBetween: 24,
               },
               1024: {
-                slidesPerView: 3,
+                slidesPerView: 2.2,
+                spaceBetween: 30,
+              },
+              1280: {
+                slidesPerView: 2.5,
+                spaceBetween: 32,
               },
             }}
             className="project-swiper pb-12"
