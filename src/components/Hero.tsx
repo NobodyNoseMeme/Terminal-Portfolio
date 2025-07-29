@@ -129,7 +129,7 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
           >
             <motion.div
               onClick={onTerminalToggle}
-              className="inline-block bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-sm rounded-2xl shadow-2xl cursor-pointer border border-slate-800 dark:border-slate-700 overflow-hidden max-w-2xl w-full mx-auto hover:shadow-blue-500/10 transition-all duration-500"
+              className="inline-block bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-sm rounded-2xl shadow-2xl cursor-pointer border border-slate-800 dark:border-slate-700 overflow-hidden max-w-xl w-full mx-auto hover:shadow-blue-500/10 transition-all duration-500"
               whileHover={{ scale: 1.02, y: -8 }}
               whileTap={{ scale: 0.98 }}
             >
