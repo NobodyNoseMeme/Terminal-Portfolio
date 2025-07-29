@@ -224,6 +224,11 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         setCurrentInput('');
       }
     }
+    
+    // Close terminal with Escape key
+    if (e.key === 'Escape') {
+      onClose();
+    }
   };
 
   // Auto-scroll to bottom
@@ -233,12 +238,44 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
     }
   }, [commands]);
 
-  // Focus input when terminal opens
+  // Focus input when terminal opens and prevent body scroll
   useEffect(() => {
-    if (isOpen && inputRef.current && !isMinimized) {
-      inputRef.current.focus();
+    if (isOpen) {
+      // Prevent body scroll when terminal is open
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      
+      if (inputRef.current && !isMinimized) {
+        // Small delay to ensure proper focus
+        setTimeout(() => {
+          inputRef.current?.focus();
+        }, 100);
+      }
+    } else {
+      // Restore body scroll when terminal is closed
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     }
-  }, [isOpen, isMinimized]);
+
+    // Handle escape key to close terminal
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isOpen, isMinimized, onClose]);
 
   // Initial greeting
   useEffect(() => {
@@ -254,140 +291,182 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
+  // Handle click outside to close (optional)
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: 50 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.9, y: 50 }}
-        className="fixed inset-4 md:inset-8 lg:inset-16 z-50 flex items-center justify-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm"
+        onClick={handleBackdropClick}
+        style={{ 
+          position: 'fixed', 
+          top: 0, 
+          left: 0, 
+          right: 0, 
+          bottom: 0,
+          overflow: 'hidden'
+        }}
       >
-        <div className="w-full max-w-4xl max-h-full bg-gray-900 dark:bg-black rounded-2xl shadow-2xl overflow-hidden border border-gray-700 backdrop-blur-sm">
-          {/* Terminal Header */}
-          <div className="flex items-center justify-between px-6 py-4 bg-gray-800 dark:bg-gray-900 border-b border-gray-700">
-            <div className="flex items-center space-x-4">
-              <div className="flex space-x-2">
-                <div className="w-3 h-3 bg-red-500 rounded-full cursor-pointer hover:bg-red-400" onClick={onClose}></div>
-                <div className="w-3 h-3 bg-yellow-500 rounded-full cursor-pointer hover:bg-yellow-400" onClick={() => setIsMinimized(!isMinimized)}></div>
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              </div>
-              <div className="flex items-center space-x-2">
-                <TerminalIcon className="w-5 h-5 text-emerald-400" />
-                <span className="text-emerald-400 font-mono font-medium">AbduBot Terminal v2.0</span>
-                <div className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-400' : 'bg-red-400'}`}></div>
-              </div>
-            </div>
-            <div className="flex items-center space-x-2">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setIsMinimized(!isMinimized)}
-                className="p-1 text-gray-400 hover:text-white transition-colors"
-              >
-                <Minimize2 className="w-4 h-4" />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={onClose}
-                className="p-1 text-gray-400 hover:text-red-400 transition-colors"
-              >
-                <X className="w-4 h-4" />
-              </motion.button>
-            </div>
-          </div>
-
-          {!isMinimized && (
-            <>
-              {/* Quick Commands */}
-              <div className="px-6 py-3 bg-gray-800/50 border-b border-gray-700">
-                <div className="flex flex-wrap gap-2">
-                  {quickCommands.map((cmd) => (
-                    <motion.button
-                      key={cmd.cmd}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => executeCommand(cmd.cmd)}
-                      className="px-3 py-1 bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 rounded-lg text-sm font-mono border border-blue-500/30 transition-colors"
-                    >
-                      {cmd.icon} {cmd.cmd}
-                    </motion.button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Terminal Content */}
-              <div 
-                ref={terminalRef}
-                className="h-96 overflow-y-auto p-6 font-mono text-sm space-y-4 bg-gray-900/95"
-              >
-                {commands.map((command, index) => (
-                  <div key={index} className="space-y-2">
-                    {command.input && (
-                      <div className="flex items-center space-x-2">
-                        <span className="text-emerald-400">abdullah@portfolio:~$</span>
-                        <span className="text-white">{command.input}</span>
-                      </div>
-                    )}
-                    {command.output && (
-                      <motion.pre 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className={`whitespace-pre-wrap leading-relaxed ${
-                          command.type === 'error' ? 'text-red-400' :
-                          command.type === 'system' ? 'text-cyan-400' :
-                          'text-gray-300'
-                        }`}
-                      >
-                        {command.output}
-                      </motion.pre>
-                    )}
-                  </div>
-                ))}
-                
-                {isTyping && (
-                  <div className="flex items-center space-x-2">
-                    <span className="text-emerald-400">🤖 AbduBot:</span>
-                    <motion.div
-                      animate={{ opacity: [0.4, 1, 0.4] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                      className="text-yellow-400"
-                    >
-                      Thinking...
-                    </motion.div>
-                  </div>
-                )}
-              </div>
-
-              {/* Input Area */}
-              <form onSubmit={handleSubmit} className="p-6 bg-gray-800 border-t border-gray-700">
-                <div className="flex items-center space-x-4">
-                  <span className="text-emerald-400 font-mono">abdullah@portfolio:~$</span>
-                  <input
-                    ref={inputRef}
-                    type="text"
-                    value={currentInput}
-                    onChange={(e) => setCurrentInput(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    className="flex-1 bg-transparent text-white font-mono focus:outline-none placeholder-gray-500"
-                    placeholder="Type a command or ask me anything..."
-                    autoComplete="off"
-                  />
-                  <motion.button
-                    type="submit"
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, y: 50 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 50 }}
+          transition={{ type: "spring", damping: 25, stiffness: 300 }}
+          className="fixed inset-4 md:inset-8 lg:inset-16 flex items-center justify-center pointer-events-none"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="w-full max-w-4xl max-h-[90vh] bg-gray-900 dark:bg-black rounded-2xl shadow-2xl overflow-hidden border border-gray-700 backdrop-blur-sm pointer-events-auto">
+            {/* Terminal Header */}
+            <div className="flex items-center justify-between px-6 py-4 bg-gray-800 dark:bg-gray-900 border-b border-gray-700">
+              <div className="flex items-center space-x-4">
+                <div className="flex space-x-2">
+                  <motion.div 
+                    className="w-3 h-3 bg-red-500 rounded-full cursor-pointer hover:bg-red-400" 
+                    onClick={onClose}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    className="p-2 text-blue-400 hover:text-blue-300 transition-colors"
-                  >
-                    <Send className="w-4 h-4" />
-                  </motion.button>
+                  />
+                  <motion.div 
+                    className="w-3 h-3 bg-yellow-500 rounded-full cursor-pointer hover:bg-yellow-400" 
+                    onClick={() => setIsMinimized(!isMinimized)}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  />
+                  <div className="w-3 h-3 bg-green-500 rounded-full" />
                 </div>
-              </form>
-            </>
-          )}
-        </div>
+                <div className="flex items-center space-x-2">
+                  <TerminalIcon className="w-5 h-5 text-emerald-400" />
+                  <span className="text-emerald-400 font-mono font-medium">AbduBot Terminal v2.0</span>
+                  <motion.div 
+                    className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-400' : 'bg-red-400'}`}
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setIsMinimized(!isMinimized)}
+                  className="p-1 text-gray-400 hover:text-white transition-colors"
+                >
+                  <Minimize2 className="w-4 h-4" />
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={onClose}
+                  className="p-1 text-gray-400 hover:text-red-400 transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </motion.button>
+              </div>
+            </div>
+
+            {!isMinimized && (
+              <>
+                {/* Quick Commands */}
+                <div className="px-6 py-3 bg-gray-800/50 border-b border-gray-700">
+                  <div className="flex flex-wrap gap-2">
+                    {quickCommands.map((cmd) => (
+                      <motion.button
+                        key={cmd.cmd}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => executeCommand(cmd.cmd)}
+                        className="px-3 py-1 bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 rounded-lg text-sm font-mono border border-blue-500/30 transition-colors"
+                      >
+                        {cmd.icon} {cmd.cmd}
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Terminal Content */}
+                <div 
+                  ref={terminalRef}
+                  className="h-96 overflow-y-auto p-6 font-mono text-sm space-y-4 bg-gray-900/95 scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-gray-800"
+                >
+                  {commands.map((command, index) => (
+                    <div key={index} className="space-y-2">
+                      {command.input && (
+                        <div className="flex items-center space-x-2">
+                          <span className="text-emerald-400">abdullah@portfolio:~$</span>
+                          <span className="text-white">{command.input}</span>
+                        </div>
+                      )}
+                      {command.output && (
+                        <motion.pre 
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className={`whitespace-pre-wrap leading-relaxed ${
+                            command.type === 'error' ? 'text-red-400' :
+                            command.type === 'system' ? 'text-cyan-400' :
+                            'text-gray-300'
+                          }`}
+                        >
+                          {command.output}
+                        </motion.pre>
+                      )}
+                    </div>
+                  ))}
+                  
+                  {isTyping && (
+                    <div className="flex items-center space-x-2">
+                      <span className="text-emerald-400">🤖 AbduBot:</span>
+                      <motion.div
+                        animate={{ opacity: [0.4, 1, 0.4] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                        className="text-yellow-400"
+                      >
+                        Thinking...
+                      </motion.div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Input Area */}
+                <form onSubmit={handleSubmit} className="p-6 bg-gray-800 border-t border-gray-700">
+                  <div className="flex items-center space-x-4">
+                    <span className="text-emerald-400 font-mono">abdullah@portfolio:~$</span>
+                    <input
+                      ref={inputRef}
+                      type="text"
+                      value={currentInput}
+                      onChange={(e) => setCurrentInput(e.target.value)}
+                      onKeyDown={handleKeyDown}
+                      className="flex-1 bg-transparent text-white font-mono focus:outline-none placeholder-gray-500"
+                      placeholder="Type a command or ask me anything..."
+                      autoComplete="off"
+                    />
+                    <motion.button
+                      type="submit"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="p-2 text-blue-400 hover:text-blue-300 transition-colors"
+                    >
+                      <Send className="w-4 h-4" />
+                    </motion.button>
+                  </div>
+                  <div className="text-xs text-gray-500 mt-2">
+                    Press ESC to close • Use ↑/↓ for command history
+                  </div>
+                </form>
+              </>
+            )}
+          </div>
+        </motion.div>
       </motion.div>
     </AnimatePresence>
   );
