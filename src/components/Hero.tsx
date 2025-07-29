@@ -35,7 +35,7 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/40 dark:from-slate-900 dark:via-slate-800/90 dark:to-slate-900">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/40 dark:from-slate-900 dark:via-slate-800/90 dark:to-slate-900 pt-20">
       {/* Minimalist Background Elements */}
       <div className="absolute inset-0">
         {/* Subtle gradient orbs */}
@@ -87,8 +87,8 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
           
           {/* Main heading with elegant typography */}
           <div className="space-y-4">
-            <motion.h1 
-              className="text-5xl md:text-7xl lg:text-8xl font-light text-slate-900 dark:text-slate-100 tracking-tight leading-none"
+            <motion.h1
+              className="text-3xl md:text-5xl lg:text-6xl font-light text-slate-900 dark:text-slate-100 tracking-tight leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
