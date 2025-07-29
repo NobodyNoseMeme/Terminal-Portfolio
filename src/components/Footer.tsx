@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, ChevronUp, Github, Linkedin, Mail } from 'lucide-react';
+import { ChevronUp, Github, Linkedin, Mail } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const scrollToTop = () => {
