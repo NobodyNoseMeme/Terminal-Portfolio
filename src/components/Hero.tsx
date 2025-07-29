@@ -76,19 +76,9 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
           className="mb-8"
         >
           <div className="mb-6">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 p-1"
-            >
-              <div className="w-full h-full rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-2xl font-bold text-gray-800 dark:text-gray-200">
-                AU
-              </div>
-            </motion.div>
           </div>
           
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-gray-100 mb-6 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-gray-100 mb-6 leading-tight mt-20">
             Hi, I'm Muhammad Abdullah
             <motion.span
               animate={{ opacity: [0, 1, 0] }}
@@ -112,7 +102,7 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
           >
             <motion.div
               onClick={onTerminalToggle}
-              className="inline-block bg-gray-900 dark:bg-black rounded-xl shadow-2xl cursor-pointer border border-gray-700 overflow-hidden max-w-2xl mx-auto"
+              className="inline-block bg-gray-900 dark:bg-black rounded-xl shadow-2xl cursor-pointer border border-gray-700 overflow-hidden max-w-4xl w-full mx-auto"
               whileHover={{ scale: 1.02, y: -5 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -132,7 +122,7 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
               </div>
               
               {/* Terminal Content */}
-              <div className="p-6 font-mono text-base">
+              <div className="p-8 font-mono text-lg">
                 <div className="flex items-center mb-2">
                   <span className="text-blue-400">abdullah@portfolio:~$</span>
                   <motion.span
@@ -143,14 +133,14 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
                     whoami
                   </motion.span>
                 </div>
-                <div className="text-green-300 mb-3 text-lg font-semibold">
-                  🤖 Click here to interact with AbduBot!
+                <div className="text-green-300 mb-4 text-2xl font-bold">
+                  🤖 Click here to interact with AbduBot Terminal!
                 </div>
-                <div className="text-gray-400 text-sm">
+                <div className="text-gray-400 text-base mb-3">
                   Try commands: whoami, skills, projects, experience, help
                 </div>
-                <div className="mt-3 text-yellow-400 text-sm animate-pulse">
-                  ▶ Interactive terminal experience awaits!
+                <div className="text-yellow-400 text-lg animate-pulse font-semibold">
+                  ▶ Interactive terminal experience awaits! Click to start!
                 </div>
               </div>
             </motion.div>

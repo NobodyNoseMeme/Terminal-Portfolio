@@ -176,16 +176,16 @@ const InteractiveSkills: React.FC = () => {
                     animate={{ rotate: collapsedCategories.has(categoryIndex) ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                     className="text-gray-400 text-xl"
-                  >
+                className={`relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg transition-all duration-500 cursor-pointer ${
                     {collapsedCategories.has(categoryIndex) ? '▲' : '▼'}
-                  </motion.div>
+                } ${collapsedCategories.has(categoryIndex) ? 'p-4' : 'p-8'}`}
                 </div>
 
                 <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">
-                  {category.title}
+                <div className={`absolute inset-0 ${category.bgColor} rounded-2xl opacity-20 ${collapsedCategories.has(categoryIndex) ? 'hidden' : ''}`}></div>
                 </h3>
 
-                <AnimatePresence>
+                  <div className={`flex items-center justify-between ${collapsedCategories.has(categoryIndex) ? 'mb-0' : 'mb-6'}`}>
                   {!collapsedCategories.has(categoryIndex) && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
@@ -255,7 +255,7 @@ const InteractiveSkills: React.FC = () => {
                     </span>
                   </div>
                 </div>
-                    </motion.div>
+                  <h3 className={`text-2xl font-bold text-gray-800 dark:text-gray-100 ${collapsedCategories.has(categoryIndex) ? 'mb-0' : 'mb-6'}`}>
                   )}
                 </AnimatePresence>
               </div>
@@ -268,24 +268,23 @@ const InteractiveSkills: React.FC = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 px-4"
         >
           {[
-            { label: 'Total Skills', value: '21+', icon: '🎯' },
-            { label: 'Years Experience', value: '4+', icon: '⏱️' },
-            { label: 'Projects Built', value: '15+', icon: '🚀' },
+            { label: 'Total Skills', value: '25+', icon: '🎯' },
+            { label: 'Years Experience', value: '5+', icon: '⏱️' },
+            { label: 'Projects Built', value: '20+', icon: '🚀' },
             { label: 'Technologies', value: '10+', icon: '⚡' },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="text-center p-4 md:p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg"
-              whileHover={{ scale: 1.05, y: -5 }}
+              className="text-center p-3 md:p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 1.4 + index * 0.1 }}
             >
-              <div className="text-2xl md:text-3xl mb-2">{stat.icon}</div>
-              <div className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-1">
+              <div className="text-xl md:text-3xl mb-2">{stat.icon}</div>
+              <div className="text-lg md:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-1">
                 {stat.value}
               </div>
               <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
@@ -306,7 +305,6 @@ const InteractiveSkills: React.FC = () => {
           </p>
           <motion.div
             className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold"
-            whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(59, 130, 246, 0.3)" }}
             whileTap={{ scale: 0.95 }}
           >
             <Zap className="w-5 h-5 mr-2" />

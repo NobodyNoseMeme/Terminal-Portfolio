@@ -160,7 +160,7 @@ const Experience: React.FC = () => {
           className="text-center mt-16"
         >
           <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-            With 4+ years of experience and 15+ projects completed, I'm always ready for new challenges and opportunities.
+            With 5+ years of experience and 20+ projects completed, I'm always ready for new challenges and opportunities.
           </p>
           <motion.button
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300"

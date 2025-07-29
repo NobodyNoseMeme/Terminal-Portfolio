@@ -9,9 +9,9 @@ const CustomCursor: React.FC = () => {
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       
-      // Add trail point with reduced frequency for smoother performance
+      // Add trail point with higher frequency for smoother trails
       const newTrail = { x: e.clientX, y: e.clientY, id: Date.now() };
-      setTrails(prev => [...prev.slice(-6), newTrail]); // Keep last 6 trail points
+      setTrails(prev => [...prev.slice(-3), newTrail]); // Keep last 3 trail points for smoother performance
     };
 
     window.addEventListener('mousemove', updateMousePosition);
@@ -21,11 +21,11 @@ const CustomCursor: React.FC = () => {
     };
   }, []);
 
-  // Clean up old trail points more frequently
+  // Clean up old trail points very frequently for smooth performance
   useEffect(() => {
     const cleanup = setInterval(() => {
-      setTrails(prev => prev.slice(-4));
-    }, 50);
+      setTrails(prev => prev.slice(-2));
+    }, 16); // 60fps cleanup
 
     return () => clearInterval(cleanup);
   }, []);
@@ -40,9 +40,10 @@ const CustomCursor: React.FC = () => {
           y: mousePosition.y - 10,
         }}
         transition={{
-          type: "tween",
-          duration: 0.1,
-          ease: "easeOut"
+          type: "spring",
+          damping: 30,
+          stiffness: 800,
+          mass: 0.5
         }}
         style={{
           position: 'fixed',
@@ -68,14 +69,14 @@ const CustomCursor: React.FC = () => {
             y: trail.y - 3,
           }}
           transition={{
-            duration: 0.4,
+            duration: 0.2,
             ease: "easeOut",
           }}
           style={{
             position: 'fixed',
             width: '6px',
             height: '6px',
-            background: `rgba(59, 130, 246, ${0.8 - index * 0.1})`,
+            background: `rgba(59, 130, 246, ${0.6 - index * 0.2})`,
             borderRadius: '50%',
             pointerEvents: 'none',
             zIndex: 99998,

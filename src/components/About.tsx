@@ -173,7 +173,6 @@ const About: React.FC = () => {
             <div className="grid grid-cols-3 gap-6 mt-8">
               <motion.div
                 className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-xl"
-                whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
@@ -184,22 +183,20 @@ const About: React.FC = () => {
               
               <motion.div
                 className="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-xl"
-                whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
-                  15+
+                  20+
                 </div>
                 <div className="text-sm font-medium text-gray-600 dark:text-gray-300">Projects</div>
               </motion.div>
               
               <motion.div
                 className="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-xl"
-                whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
-                  4+
+                  5+
                 </div>
                 <div className="text-sm font-medium text-gray-600 dark:text-gray-300">Years Exp</div>
               </motion.div>
@@ -207,7 +204,6 @@ const About: React.FC = () => {
 
             <motion.div
               className="pt-6"
-              whileHover={{ scale: 1.02 }}
             >
               <motion.a
                 href="#contact"
