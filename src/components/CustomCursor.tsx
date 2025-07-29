@@ -9,9 +9,9 @@ const CustomCursor: React.FC = () => {
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       
-      // Add trail point with higher frequency for smoother trails
+      // Add trail point with ultra-high frequency for perfect trails
       const newTrail = { x: e.clientX, y: e.clientY, id: Date.now() };
-      setTrails(prev => [...prev.slice(-5), newTrail]); // Keep last 5 trail points for smoother performance
+      setTrails(prev => [...prev.slice(-8), newTrail]); // Keep last 8 trail points for ultra-smooth performance
     };
 
     window.addEventListener('mousemove', updateMousePosition);
@@ -21,11 +21,11 @@ const CustomCursor: React.FC = () => {
     };
   }, []);
 
-  // Clean up old trail points very frequently for smooth performance
+  // Clean up old trail points at ultra-high frequency for perfect performance
   useEffect(() => {
     const cleanup = setInterval(() => {
-      setTrails(prev => prev.slice(-3));
-    }, 8); // 120fps cleanup for ultra smooth performance
+      setTrails(prev => prev.slice(-4));
+    }, 4); // 240fps cleanup for perfect performance
 
     return () => clearInterval(cleanup);
   }, []);
@@ -41,9 +41,9 @@ const CustomCursor: React.FC = () => {
         }}
         transition={{
           type: "spring",
-          damping: 40,
-          stiffness: 1200,
-          mass: 0.3
+          damping: 50,
+          stiffness: 2000,
+          mass: 0.1
         }}
         style={{
           position: 'fixed',
@@ -69,14 +69,14 @@ const CustomCursor: React.FC = () => {
             y: trail.y - 3,
           }}
           transition={{
-            duration: 0.15,
+            duration: 0.08,
             ease: "easeOut",
           }}
           style={{
             position: 'fixed',
             width: '6px',
             height: '6px',
-            background: `rgba(59, 130, 246, ${0.7 - index * 0.15})`,
+            background: `rgba(59, 130, 246, ${0.8 - index * 0.12})`,
             borderRadius: '50%',
             pointerEvents: 'none',
             zIndex: 99998,
