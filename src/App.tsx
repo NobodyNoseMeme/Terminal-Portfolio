@@ -45,6 +45,7 @@ function App() {
 
   return (
     <ThemeProvider>
+      <CustomCursor />
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
         <AnimatePresence mode="wait">
           {isLoading ? (
