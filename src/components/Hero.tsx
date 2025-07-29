@@ -73,17 +73,7 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
           transition={{ duration: 1, ease: "easeOut" }}
           className="space-y-8"
         >
-          {/* Elegant greeting */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="flex items-center justify-center space-x-2 text-sm font-medium text-slate-600 dark:text-slate-400 tracking-wider uppercase mb-4"
-          >
-            <Sparkles className="w-4 h-4 text-blue-500" />
-            <span>Welcome to my digital space</span>
-            <Sparkles className="w-4 h-4 text-blue-500" />
-          </motion.div>
+
           
           {/* Main heading with elegant typography */}
           <div className="space-y-4">
