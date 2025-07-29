@@ -12,43 +12,43 @@ const InteractiveSkills: React.FC = () => {
       category: 'Frontend',
       icon: Code,
       color: 'from-blue-500 to-cyan-500',
-      skills: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js', 'Vue.js'],
+      skills: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap', 'Tailwind CSS', 'Responsive Design'],
       level: 95
     },
     {
       category: 'Backend',
       icon: Server,
       color: 'from-green-500 to-emerald-500',
-      skills: ['Node.js', 'Express', 'Python', 'Django', 'FastAPI'],
+      skills: ['PHP', 'Node.js', 'Express.js', 'RESTful APIs'],
       level: 90
     },
     {
       category: 'Database',
       icon: Database,
       color: 'from-purple-500 to-violet-500',
-      skills: ['PostgreSQL', 'MongoDB', 'Redis', 'Firebase', 'Supabase'],
+      skills: ['MySQL', 'MongoDB'],
       level: 85
     },
     {
-      category: 'Mobile',
-      icon: Smartphone,
+      category: 'Programming',
+      icon: Brain,
       color: 'from-pink-500 to-rose-500',
-      skills: ['React Native', 'Flutter', 'Ionic', 'Expo'],
-      level: 80
+      skills: ['C', 'C++', 'JavaScript', 'Python'],
+      level: 88
     },
     {
-      category: 'DevOps',
+      category: 'Tools & DevOps',
       icon: Globe,
       color: 'from-orange-500 to-red-500',
-      skills: ['Docker', 'AWS', 'Vercel', 'Netlify', 'CI/CD'],
-      level: 75
+      skills: ['Git & GitHub', 'VS Code', 'Postman', 'Version Control'],
+      level: 85
     },
     {
-      category: 'Design',
-      icon: Palette,
+      category: 'Specializations',
+      icon: Zap,
       color: 'from-indigo-500 to-purple-500',
-      skills: ['Figma', 'Adobe XD', 'Photoshop', 'UI/UX Design'],
-      level: 88
+      skills: ['Machine Learning', 'SEO & Optimization', 'Agile Methodology', 'Debugging & Testing'],
+      level: 80
     }
   ];
 
