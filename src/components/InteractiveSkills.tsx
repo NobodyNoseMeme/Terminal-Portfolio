@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Code, Database, Globe, Smartphone, Server, Palette, Brain, Zap } from 'lucide-react';
+import { Code, Database, Globe, Smartphone, Server, Palette, Brain, Zap, Minus, Plus } from 'lucide-react';
 
 const InteractiveSkills: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.2 });
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const skills = [
     {
@@ -71,7 +71,16 @@ const InteractiveSkills: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          animate={{ 
+            height: isCollapsed ? 0 : 'auto',
+            opacity: isCollapsed ? 0 : 1,
+            marginBottom: isCollapsed ? 0 : '4rem'
+          }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+          style={{ overflow: 'hidden' }}
+        >
           {skills.map((skillCategory, index) => {
             const IconComponent = skillCategory.icon;
             return (
@@ -80,11 +89,9 @@ const InteractiveSkills: React.FC = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="group relative"
-                onMouseEnter={() => setHoveredSkill(skillCategory.category)}
-                onMouseLeave={() => setHoveredSkill(null)}
+                className="relative"
               >
-                <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 h-full">
+                <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 h-full">
                   {/* Header */}
                   <div className="flex items-center mb-6">
                     <motion.div
@@ -124,12 +131,8 @@ const InteractiveSkills: React.FC = () => {
                         transition={{ duration: 0.5, delay: (index * 0.1) + (skillIndex * 0.1) }}
                         className="flex items-center"
                       >
-                        <motion.div
+                        <div
                           className={`w-2 h-2 rounded-full bg-gradient-to-r ${skillCategory.color} mr-3`}
-                          animate={{
-                            scale: hoveredSkill === skillCategory.category ? [1, 1.5, 1] : 1,
-                          }}
-                          transition={{ duration: 0.3 }}
                         />
                         <span className="text-gray-700 dark:text-gray-300 font-medium">
                           {skill}
@@ -137,40 +140,48 @@ const InteractiveSkills: React.FC = () => {
                       </motion.div>
                     ))}
                   </div>
-
-                  {/* Hover Effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                  />
                 </div>
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
-        {/* Interactive Elements */}
+        {/* Collapse/Expand Controls */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-16 text-center"
         >
-          <div className="flex flex-wrap justify-center gap-4">
-            <motion.div
-              className="flex items-center px-4 py-2 bg-white dark:bg-gray-900 rounded-full shadow-lg border border-gray-200 dark:border-gray-700"
-              whileHover={{ scale: 1.05 }}
-            >
+          <div className="flex flex-wrap justify-center gap-4 mb-6">
+            <div className="flex items-center px-4 py-2 bg-white dark:bg-gray-900 rounded-full shadow-lg border border-gray-200 dark:border-gray-700">
               <Brain className="w-5 h-5 text-blue-500 mr-2" />
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Always Learning</span>
-            </motion.div>
-            <motion.div
-              className="flex items-center px-4 py-2 bg-white dark:bg-gray-900 rounded-full shadow-lg border border-gray-200 dark:border-gray-700"
-              whileHover={{ scale: 1.05 }}
-            >
+            </div>
+            <div className="flex items-center px-4 py-2 bg-white dark:bg-gray-900 rounded-full shadow-lg border border-gray-200 dark:border-gray-700">
               <Zap className="w-5 h-5 text-yellow-500 mr-2" />
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Fast Execution</span>
-            </motion.div>
+            </div>
           </div>
+          
+          <motion.button
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold shadow-lg transition-all duration-300 mx-auto"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {isCollapsed ? (
+              <>
+                <Plus className="w-5 h-5 mr-2" />
+                Expand Skills
+              </>
+            ) : (
+              <>
+                <Minus className="w-5 h-5 mr-2" />
+                Minimize Skills
+              </>
+            )}
+          </motion.button>
         </motion.div>
       </div>
     </section>
