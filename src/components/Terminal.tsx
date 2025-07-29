@@ -45,7 +45,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
     ],
     skills: [
       "💻 Abdullah's Tech Arsenal:\n\n🎨 Frontend Magic:\n• HTML5, CSS3, JavaScript (Expert)\n• Bootstrap, Tailwind CSS (Advanced)\n• Responsive Design (Master)\n\n⚙️ Backend Power:\n• PHP, Node.js, Express.js\n• RESTful APIs\n\n🗄️ Database Mastery:\n• MySQL, MongoDB\n\n🔧 Tools & More:\n• Git & GitHub, VS Code, Postman\n• C, C++, Python\n• Machine Learning, SEO\n• Agile Methodology\n\nAlways learning, always growing! 📈",
-      "🛠️ Technical Expertise Breakdown:\n\n📊 Proficiency Levels:\n• Web Development: 95% ⭐⭐⭐⭐⭐\n• JavaScript: 90% ⭐⭐⭐⭐⭐\n• PHP/Backend: 88% ⭐⭐⭐⭐\n• Database Design: 85% ⭐⭐⭐⭐\n• Python/ML: 80% ⭐⭐⭐⭐\n• SEO & Optimization: 88% ⭐⭐⭐⭐\n\n🎯 Currently exploring: AI/ML integration in web apps!"
+      "🛠️ Technical Expertise Breakdown:\n\n📊 Proficiency Levels:\n• Web Development: 95% ⭐⭐⭐⭐⭐\n• JavaScript: 90% ⭐⭐⭐⭐��\n• PHP/Backend: 88% ⭐⭐⭐⭐\n• Database Design: 85% ⭐⭐⭐⭐\n• Python/ML: 80% ⭐⭐⭐⭐\n• SEO & Optimization: 88% ⭐⭐⭐⭐\n\n🎯 Currently exploring: AI/ML integration in web apps!"
     ],
     projects: [
       "🚀 Abdullah's Project Showcase:\n\n⭐ Featured Projects:\n• MacroMate - AI-powered health & fitness tracker (Final Year Project)\n• XRevStudio.com - Creative agency portfolio with stunning animations\n• ObecheInterior.com - Elegant interior design showcase\n• LevelUpSol.com.pk - Professional corporate website\n• CricketX.net - Enhanced sports platform\n\n💡 Each project represents a unique challenge solved with creativity and cutting-edge tech!",
@@ -83,7 +83,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
   // Smart response system that can handle variations and natural language
   const getSmartResponse = (input: string): { response: string; type: 'bot' | 'error' | 'system' } => {
     const lowerInput = input.toLowerCase().trim();
-    
+
     // Direct command matches
     if (responses[lowerInput as keyof typeof responses]) {
       const responseArray = responses[lowerInput as keyof typeof responses];
@@ -97,48 +97,48 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
     if (lowerInput.includes('who') || lowerInput.includes('about') || lowerInput.includes('yourself')) {
       return { response: responses.whoami[0], type: 'bot' };
     }
-    
+
     if (lowerInput.includes('skill') || lowerInput.includes('tech') || lowerInput.includes('technology') || lowerInput.includes('know')) {
       return { response: responses.skills[0], type: 'bot' };
     }
-    
+
     if (lowerInput.includes('project') || lowerInput.includes('work') || lowerInput.includes('portfolio')) {
       return { response: responses.projects[0], type: 'bot' };
     }
-    
+
     if (lowerInput.includes('experience') || lowerInput.includes('job') || lowerInput.includes('career')) {
       return { response: responses.experience[0], type: 'bot' };
     }
-    
+
     if (lowerInput.includes('contact') || lowerInput.includes('email') || lowerInput.includes('reach')) {
       return { response: responses.contact[0], type: 'bot' };
     }
 
     if (lowerInput.includes('hello') || lowerInput.includes('hi') || lowerInput.includes('hey')) {
-      return { 
-        response: "👋 Hello there! I'm AbduBot, Abdullah's AI assistant. How can I help you today? Try 'help' to see what I can do!", 
-        type: 'bot' 
+      return {
+        response: "👋 Hello there! I'm AbduBot, Abdullah's AI assistant. How can I help you today? Try 'help' to see what I can do!",
+        type: 'bot'
       };
     }
 
     if (lowerInput.includes('thank') || lowerInput.includes('thanks')) {
-      return { 
-        response: "😊 You're welcome! Is there anything else you'd like to know about Abdullah's work or skills?", 
-        type: 'bot' 
+      return {
+        response: "😊 You're welcome! Is there anything else you'd like to know about Abdullah's work or skills?",
+        type: 'bot'
       };
     }
 
     if (lowerInput.includes('weather')) {
-      return { 
-        response: "☀️ I'm a coding bot, not a weather bot! But I can tell you it's always sunny in the world of programming! ☀️", 
-        type: 'bot' 
+      return {
+        response: "☀️ I'm a coding bot, not a weather bot! But I can tell you it's always sunny in the world of programming! ☀️",
+        type: 'bot'
       };
     }
 
     // Error handling with helpful suggestions
     const suggestions = ['whoami', 'skills', 'projects', 'experience', 'contact', 'help'];
     const randomSuggestion = suggestions[Math.floor(Math.random() * suggestions.length)];
-    
+
     return {
       response: `❌ Command '${input}' not recognized.\n\n💡 Try these popular commands:\n• help - See all available commands\n• ${randomSuggestion} - ${quickCommands.find(cmd => cmd.cmd === randomSuggestion)?.desc}\n\n🤖 I also understand natural language! Try asking: "What are your skills?" or "Tell me about your projects"`,
       type: 'error'
@@ -149,7 +149,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
     if (!input.trim()) return;
 
     const timestamp = new Date();
-    
+
     // Add user input
     setCommands(prev => [...prev, {
       input,
@@ -224,7 +224,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         setCurrentInput('');
       }
     }
-    
+
     // Close terminal with Escape key
     if (e.key === 'Escape') {
       onClose();
@@ -245,7 +245,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
-      
+
       if (inputRef.current && !isMinimized) {
         // Small delay to ensure proper focus
         setTimeout(() => {
@@ -308,11 +308,11 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         exit={{ opacity: 0 }}
         className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm"
         onClick={handleBackdropClick}
-        style={{ 
-          position: 'fixed', 
-          top: 0, 
-          left: 0, 
-          right: 0, 
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
           bottom: 0,
           overflow: 'hidden'
         }}
@@ -330,24 +330,36 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
             <div className="flex items-center justify-between px-6 py-4 bg-gray-800 dark:bg-gray-900 border-b border-gray-700">
               <div className="flex items-center space-x-4">
                 <div className="flex space-x-2">
-                  <motion.div 
-                    className="w-3 h-3 bg-red-500 rounded-full cursor-pointer hover:bg-red-400" 
+                  <motion.div
+                    className="w-3 h-3 bg-red-500 rounded-full cursor-pointer hover:bg-red-400 flex items-center justify-center group relative"
                     onClick={onClose}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                  />
-                  <motion.div 
-                    className="w-3 h-3 bg-yellow-500 rounded-full cursor-pointer hover:bg-yellow-400" 
+                    title="Close"
+                  >
+                    <X className="w-2 h-2 text-red-800 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </motion.div>
+                  <motion.div
+                    className="w-3 h-3 bg-yellow-500 rounded-full cursor-pointer hover:bg-yellow-400 flex items-center justify-center group relative"
                     onClick={() => setIsMinimized(!isMinimized)}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                  />
-                  <div className="w-3 h-3 bg-green-500 rounded-full" />
+                    title="Minimize"
+                  >
+                    <Minimize2 className="w-2 h-2 text-yellow-800 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </motion.div>
+                  <motion.div
+                    className="w-3 h-3 bg-green-500 rounded-full cursor-pointer hover:bg-green-400 flex items-center justify-center group relative"
+                    whileHover={{ scale: 1.1 }}
+                    title="Maximize"
+                  >
+                    <Maximize2 className="w-2 h-2 text-green-800 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </motion.div>
                 </div>
                 <div className="flex items-center space-x-2">
                   <TerminalIcon className="w-5 h-5 text-emerald-400" />
                   <span className="text-emerald-400 font-mono font-medium">AbduBot Terminal v2.0</span>
-                  <motion.div 
+                  <motion.div
                     className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-400' : 'bg-red-400'}`}
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
@@ -394,7 +406,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Terminal Content */}
-                <div 
+                <div
                   ref={terminalRef}
                   className="h-96 overflow-y-auto p-6 font-mono text-sm space-y-4 bg-gray-900/95 scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-gray-800"
                 >
@@ -407,7 +419,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
                         </div>
                       )}
                       {command.output && (
-                        <motion.pre 
+                        <motion.pre
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           className={`whitespace-pre-wrap leading-relaxed ${
@@ -421,7 +433,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
                       )}
                     </div>
                   ))}
-                  
+
                   {isTyping && (
                     <div className="flex items-center space-x-2">
                       <span className="text-emerald-400">🤖 AbduBot:</span>

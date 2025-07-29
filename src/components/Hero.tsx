@@ -10,13 +10,13 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
   const [text, setText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
   const fullText = "Abdullah Uzair";
-  
+
   useEffect(() => {
     let index = 0;
     let animationFrameId: number;
     let lastTime = 0;
     const typeSpeed = 120; // Slower, smoother typing
-    
+
     const animate = (currentTime: number) => {
       if (currentTime - lastTime >= typeSpeed) {
         if (index <= fullText.length) {
@@ -30,9 +30,9 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
       }
       animationFrameId = requestAnimationFrame(animate);
     };
-    
+
     animationFrameId = requestAnimationFrame(animate);
-    
+
     return () => {
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
@@ -58,7 +58,7 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
         {/* Subtle gradient orbs */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-400/10 rounded-full blur-3xl"></div>
-        
+
         {/* Minimal floating particles */}
         {Array.from({ length: 12 }, (_, i) => (
           <motion.div
@@ -91,7 +91,7 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
           className="space-y-6 sm:space-y-8"
         >
 
-          
+
           {/* Main heading with elegant typography */}
           <div className="space-y-4">
             <motion.h1
@@ -114,8 +114,8 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
                 )}
               </span>
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               className="text-lg sm:text-xl md:text-2xl font-light text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -134,11 +134,11 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.8 }}
-            className="mt-12"
+            className="mt-8 sm:mt-12"
           >
             <motion.div
               onClick={onTerminalToggle}
-              className="inline-block bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-sm rounded-2xl shadow-2xl cursor-pointer border border-slate-800 dark:border-slate-700 overflow-hidden max-w-xl w-full mx-4 sm:mx-auto hover:shadow-blue-500/10 transition-all duration-500"
+              className="inline-block bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl cursor-pointer border border-slate-800 dark:border-slate-700 overflow-hidden max-w-xl w-full mx-2 sm:mx-4 md:mx-auto hover:shadow-blue-500/10 transition-all duration-500"
               whileHover={{ scale: 1.02, y: -8 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -156,7 +156,7 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Terminal Content */}
               <div className="p-4 sm:p-6 font-mono text-xs sm:text-sm">
                 <div className="flex items-center mb-2 sm:mb-3 flex-wrap">
@@ -194,21 +194,21 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.3, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mt-8 sm:mt-12 px-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center items-center mt-6 sm:mt-12 px-2 sm:px-4"
           >
             <motion.button
               onClick={() => scrollToSection('projects')}
-              className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold text-base sm:text-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center space-x-2"
+              className="group w-full sm:w-auto min-w-[200px] px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold text-sm sm:text-base md:text-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center space-x-2"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
               <span>Explore My Work</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </motion.button>
-            
+
             <motion.button
               onClick={() => scrollToSection('contact')}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-xl font-semibold text-base sm:text-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300"
+              className="w-full sm:w-auto min-w-[200px] px-6 sm:px-8 py-3 sm:py-4 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-xl font-semibold text-sm sm:text-base md:text-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -221,7 +221,7 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5, duration: 0.8 }}
-            className="flex justify-center space-x-4 sm:space-x-6 mt-8"
+            className="flex justify-center space-x-3 sm:space-x-6 mt-6 sm:mt-8"
           >
             <motion.a
               href="https://www.linkedin.com/in/abdullah-uzair-2a18b9278/"
@@ -233,7 +233,7 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
             >
               <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
             </motion.a>
-            
+
             <motion.a
               href="https://github.com/mabdullahuzair/"
               target="_blank"
@@ -244,7 +244,7 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
             >
               <Github className="w-5 h-5 sm:w-6 sm:h-6" />
             </motion.a>
-            
+
             <motion.a
               href="mailto:abdullahuzair860@gmail.com"
               className="p-2 sm:p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-red-600 hover:text-red-700"
