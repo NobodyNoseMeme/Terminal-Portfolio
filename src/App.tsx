@@ -15,7 +15,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
   const handleLoadingComplete = () => {
