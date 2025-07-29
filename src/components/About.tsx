@@ -161,7 +161,7 @@ const About: React.FC = () => {
             
             <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
               Software Engineering student at UCP, passionate about problem-solving, full-stack development, and SEO. 
-              Experienced in both frontend and backend technologies with a strong foundation in web design.
+              With 5+ years of experience in both frontend and backend technologies and a strong foundation in web design.
             </p>
             
             <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -188,7 +188,7 @@ const About: React.FC = () => {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
-                  15+
+                  20+
                 </div>
                 <div className="text-sm font-medium text-gray-600 dark:text-gray-300">Projects</div>
               </motion.div>
@@ -199,7 +199,7 @@ const About: React.FC = () => {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
-                  4+
+                  5+
                 </div>
                 <div className="text-sm font-medium text-gray-600 dark:text-gray-300">Years Exp</div>
               </motion.div>

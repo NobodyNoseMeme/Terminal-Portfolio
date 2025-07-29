@@ -5,7 +5,6 @@ import { Code, Database, Globe, Wrench, Terminal, Zap, Star, Trophy, Target } fr
 const InteractiveSkills: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
-  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [collapsedCategories, setCollapsedCategories] = useState<Set<number>>(new Set());
 
   const toggleCategory = (index: number) => {
@@ -25,11 +24,11 @@ const InteractiveSkills: React.FC = () => {
       color: 'from-blue-500 to-cyan-500',
       bgColor: 'bg-blue-50 dark:bg-blue-900/20',
       skills: [
-        { name: 'HTML5', level: 95, experience: '3+ years', projects: 15 },
-        { name: 'CSS3', level: 90, experience: '3+ years', projects: 15 },
-        { name: 'Bootstrap', level: 85, experience: '2+ years', projects: 10 },
-        { name: 'Tailwind CSS', level: 92, experience: '2+ years', projects: 8 },
-        { name: 'JavaScript', level: 88, experience: '2+ years', projects: 12 },
+        { name: 'HTML5', level: 95, experience: '4+ years', projects: 20 },
+        { name: 'CSS3', level: 90, experience: '4+ years', projects: 20 },
+        { name: 'Bootstrap', level: 85, experience: '3+ years', projects: 15 },
+        { name: 'Tailwind CSS', level: 92, experience: '3+ years', projects: 12 },
+        { name: 'JavaScript', level: 88, experience: '3+ years', projects: 18 },
       ]
     },
     {
@@ -38,10 +37,10 @@ const InteractiveSkills: React.FC = () => {
       color: 'from-green-500 to-emerald-500',
       bgColor: 'bg-green-50 dark:bg-green-900/20',
       skills: [
-        { name: 'PHP', level: 85, experience: '2+ years', projects: 8 },
-        { name: 'Node.js', level: 80, experience: '1+ years', projects: 6 },
-        { name: 'Express.js', level: 78, experience: '1+ years', projects: 5 },
-        { name: 'RESTful APIs', level: 85, experience: '2+ years', projects: 10 },
+        { name: 'PHP', level: 85, experience: '3+ years', projects: 12 },
+        { name: 'Node.js', level: 80, experience: '2+ years', projects: 10 },
+        { name: 'Express.js', level: 78, experience: '2+ years', projects: 8 },
+        { name: 'RESTful APIs', level: 85, experience: '3+ years', projects: 15 },
       ]
     },
     {
@@ -50,8 +49,8 @@ const InteractiveSkills: React.FC = () => {
       color: 'from-purple-500 to-pink-500',
       bgColor: 'bg-purple-50 dark:bg-purple-900/20',
       skills: [
-        { name: 'MySQL', level: 88, experience: '2+ years', projects: 12 },
-        { name: 'MongoDB', level: 82, experience: '1+ years', projects: 6 },
+        { name: 'MySQL', level: 88, experience: '3+ years', projects: 16 },
+        { name: 'MongoDB', level: 82, experience: '2+ years', projects: 10 },
       ]
     },
     {
@@ -60,10 +59,10 @@ const InteractiveSkills: React.FC = () => {
       color: 'from-orange-500 to-red-500',
       bgColor: 'bg-orange-50 dark:bg-orange-900/20',
       skills: [
-        { name: 'Git & GitHub', level: 90, experience: '2+ years', projects: 20 },
-        { name: 'Postman', level: 85, experience: '2+ years', projects: 15 },
-        { name: 'VS Code', level: 95, experience: '3+ years', projects: 25 },
-        { name: 'SEO', level: 88, experience: '1+ years', projects: 8 },
+        { name: 'Git & GitHub', level: 90, experience: '3+ years', projects: 25 },
+        { name: 'Postman', level: 85, experience: '3+ years', projects: 20 },
+        { name: 'VS Code', level: 95, experience: '4+ years', projects: 30 },
+        { name: 'SEO', level: 88, experience: '2+ years', projects: 12 },
       ]
     },
     {
@@ -72,10 +71,10 @@ const InteractiveSkills: React.FC = () => {
       color: 'from-indigo-500 to-blue-500',
       bgColor: 'bg-indigo-50 dark:bg-indigo-900/20',
       skills: [
-        { name: 'C', level: 80, experience: '2+ years', projects: 5 },
-        { name: 'C++', level: 82, experience: '2+ years', projects: 6 },
-        { name: 'JavaScript', level: 88, experience: '2+ years', projects: 12 },
-        { name: 'Python', level: 75, experience: '1+ years', projects: 4 },
+        { name: 'C', level: 80, experience: '3+ years', projects: 8 },
+        { name: 'C++', level: 82, experience: '3+ years', projects: 10 },
+        { name: 'JavaScript', level: 88, experience: '3+ years', projects: 18 },
+        { name: 'Python', level: 75, experience: '2+ years', projects: 7 },
       ]
     },
     {
@@ -84,10 +83,10 @@ const InteractiveSkills: React.FC = () => {
       color: 'from-yellow-500 to-orange-500',
       bgColor: 'bg-yellow-50 dark:bg-yellow-900/20',
       skills: [
-        { name: 'Debugging', level: 90, experience: '2+ years', projects: 20 },
-        { name: 'Agile', level: 85, experience: '1+ years', projects: 8 },
-        { name: 'Machine Learning', level: 65, experience: '6 months', projects: 2 },
-        { name: 'Problem Solving', level: 92, experience: '3+ years', projects: 25 },
+        { name: 'Debugging', level: 90, experience: '3+ years', projects: 25 },
+        { name: 'Agile', level: 85, experience: '2+ years', projects: 12 },
+        { name: 'Machine Learning', level: 65, experience: '1+ years', projects: 5 },
+        { name: 'Problem Solving', level: 92, experience: '4+ years', projects: 30 },
       ]
     },
   ];
@@ -159,16 +158,14 @@ const InteractiveSkills: React.FC = () => {
             <motion.div
               key={category.title}
               variants={itemVariants}
-              className={`relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer ${
-                selectedCategory === categoryIndex ? 'ring-4 ring-blue-500 scale-105' : ''
-              }`}
+              className="relative bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-8 shadow-lg transition-all duration-300 cursor-pointer"
               onClick={() => toggleCategory(categoryIndex)}
             >
               {/* Background Pattern */}
               <div className={`absolute inset-0 ${category.bgColor} rounded-2xl opacity-20`}></div>
               
               <div className="relative z-10">
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center justify-between mb-4 md:mb-6">
                   <div className={`p-4 rounded-xl bg-gradient-to-r ${category.color} text-white shadow-lg`}>
                     {category.icon}
                   </div>
@@ -181,7 +178,7 @@ const InteractiveSkills: React.FC = () => {
                   </motion.div>
                 </div>
 
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">
+                <h3 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 md:mb-6">
                   {category.title}
                 </h3>
 
@@ -189,7 +186,7 @@ const InteractiveSkills: React.FC = () => {
                   {!collapsedCategories.has(categoryIndex) && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
+                      animate={{ opacity: 1, height: 'auto', paddingTop: '0px', paddingBottom: '0px' }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
@@ -198,7 +195,7 @@ const InteractiveSkills: React.FC = () => {
                   {category.skills.map((skill, skillIndex) => (
                     <motion.div
                       key={skill.name}
-                      className="space-y-2"
+                      className="space-y-1 md:space-y-2"
                     >
                       <div className="flex justify-between items-center">
                         <div className="flex items-center space-x-2">
@@ -212,7 +209,7 @@ const InteractiveSkills: React.FC = () => {
                         </span>
                       </div>
                       
-                      <div className="relative h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                      <div className="relative h-2 md:h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                         <motion.div
                           className={`h-full bg-gradient-to-r ${category.color} rounded-full relative`}
                           initial={{ width: 0 }}
@@ -235,8 +232,8 @@ const InteractiveSkills: React.FC = () => {
                         </motion.div>
                       </div>
 
-                      {/* Always show skill details */}
-                      <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-2 mt-2">
+                      {/* Skill details */}
+                      <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-2 mt-1 md:mt-2">
                         <div className="flex justify-between text-xs text-gray-600 dark:text-gray-400">
                           <span>Experience: {skill.experience}</span>
                           <span>Projects: {skill.projects}</span>
@@ -247,7 +244,7 @@ const InteractiveSkills: React.FC = () => {
                 </div>
 
                 {/* Category Stats */}
-                <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-gray-200 dark:border-gray-700">
                   <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400">
                     <span>{category.skills.length} Skills</span>
                     <span>
@@ -271,9 +268,9 @@ const InteractiveSkills: React.FC = () => {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
         >
           {[
-            { label: 'Total Skills', value: '21+', icon: '🎯' },
-            { label: 'Years Experience', value: '4+', icon: '⏱️' },
-            { label: 'Projects Built', value: '15+', icon: '🚀' },
+            { label: 'Total Skills', value: '25+', icon: '🎯' },
+            { label: 'Years Experience', value: '5+', icon: '⏱️' },
+            { label: 'Projects Built', value: '20+', icon: '🚀' },
             { label: 'Technologies', value: '10+', icon: '⚡' },
           ].map((stat, index) => (
             <motion.div
