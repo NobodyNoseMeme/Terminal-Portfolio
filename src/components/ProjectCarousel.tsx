@@ -347,32 +347,56 @@ const ProjectCarousel: React.FC = () => {
       </div>
 
       <style>{`
+        .project-swiper {
+          overflow: visible;
+        }
+        .project-swiper .swiper-slide {
+          transition: all 0.3s ease;
+        }
+        .project-swiper .swiper-slide:not(.swiper-slide-active) {
+          opacity: 0.7;
+          transform: scale(0.95);
+        }
         .project-swiper .swiper-pagination-bullet {
           background: #3b82f6;
-          opacity: 0.5;
+          opacity: 0.4;
+          transition: all 0.3s ease;
         }
         .project-swiper .swiper-pagination-bullet-active {
           background: #8b5cf6;
           opacity: 1;
+          transform: scale(1.2);
         }
         .project-swiper .swiper-button-next,
         .project-swiper .swiper-button-prev {
           color: #3b82f6;
-          background: white;
+          background: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(10px);
           border-radius: 50%;
-          width: 44px;
-          height: 44px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          width: 48px;
+          height: 48px;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+          transition: all 0.3s ease;
+        }
+        .project-swiper .swiper-button-next:hover,
+        .project-swiper .swiper-button-prev:hover {
+          background: rgba(255, 255, 255, 1);
+          transform: scale(1.1);
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
         }
         .project-swiper .swiper-button-next:after,
         .project-swiper .swiper-button-prev:after {
-          font-size: 18px;
+          font-size: 20px;
           font-weight: bold;
         }
         .dark .project-swiper .swiper-button-next,
         .dark .project-swiper .swiper-button-prev {
-          background: #1f2937;
+          background: rgba(31, 41, 55, 0.9);
           color: #60a5fa;
+        }
+        .dark .project-swiper .swiper-button-next:hover,
+        .dark .project-swiper .swiper-button-prev:hover {
+          background: rgba(31, 41, 55, 1);
         }
       `}</style>
     </section>
