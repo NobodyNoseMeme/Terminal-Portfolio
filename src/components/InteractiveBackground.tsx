@@ -33,9 +33,9 @@ const InteractiveBackground: React.FC = () => {
           y,
           baseX: x,
           baseY: y,
-          size: Math.random() * 4 + 2, // 2-6px
+          size: Math.random() * 6 + 4, // 4-10px
           color: ['#3b82f6', '#8b5cf6', '#06b6d4', '#10b981'][Math.floor(Math.random() * 4)],
-          opacity: Math.random() * 0.3 + 0.1, // 0.1-0.4 opacity
+          opacity: Math.random() * 0.4 + 0.3, // 0.3-0.7 opacity
         });
       }
       
