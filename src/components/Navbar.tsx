@@ -123,20 +123,23 @@ const Navbar: React.FC<NavbarProps> = ({ onTerminalToggle }) => {
               <motion.button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`relative px-5 py-2.5 text-sm font-semibold transition-all duration-300 rounded-full ${
+                className={`relative px-5 py-2.5 text-sm font-semibold transition-all duration-300 rounded-full hover-3d-nav ${
                   activeSection === item.id
                     ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg'
                     : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/60 dark:hover:bg-gray-800/60 backdrop-blur-sm'
                 }`}
                 whileHover={{
                   scale: 1.05,
-                  y: -2,
+                  y: -4,
+                  rotateX: -5,
+                  z: 20,
                   boxShadow: activeSection === item.id
-                    ? "0 8px 25px rgba(59, 130, 246, 0.4)"
-                    : "0 4px 12px rgba(0, 0, 0, 0.1)"
+                    ? "0 15px 30px rgba(59, 130, 246, 0.5)"
+                    : "0 8px 20px rgba(0, 0, 0, 0.15)"
                 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                style={{ transformStyle: 'preserve-3d' }}
               >
                 {item.label}
                 {activeSection === item.id && (
