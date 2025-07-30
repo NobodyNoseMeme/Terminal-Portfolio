@@ -121,29 +121,45 @@ const About: React.FC = () => {
 
             {/* Floating Elements */}
             <motion.div
-              className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center text-white font-bold shadow-lg z-20"
-              animate={{ 
+              className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center text-white font-bold shadow-lg z-20 cursor-pointer"
+              animate={{
                 y: [0, -15, 0],
                 rotate: [0, 5, 0]
               }}
               transition={{ duration: 4, repeat: Infinity }}
+              whileHover={{
+                scale: 1.1,
+                rotate: 15,
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+              }}
+              whileTap={{ scale: 0.95 }}
             >
               <div className="text-center">
-                <Code className="w-6 h-6 mx-auto mb-1" />
+                <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
+                  <Code className="w-6 h-6 mx-auto mb-1" />
+                </motion.div>
                 <div className="text-xs">DEV</div>
               </div>
             </motion.div>
-            
+
             <motion.div
-              className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white font-bold shadow-lg z-20"
-              animate={{ 
+              className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white font-bold shadow-lg z-20 cursor-pointer"
+              animate={{
                 y: [0, 15, 0],
                 rotate: [0, -5, 0]
               }}
               transition={{ duration: 4, repeat: Infinity, delay: 2 }}
+              whileHover={{
+                scale: 1.1,
+                rotate: -15,
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+              }}
+              whileTap={{ scale: 0.95 }}
             >
               <div className="text-center">
-                <Trophy className="w-8 h-8 mx-auto mb-1" />
+                <motion.div whileHover={{ scale: 1.2, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.5 }}>
+                  <Trophy className="w-8 h-8 mx-auto mb-1" />
+                </motion.div>
                 <div className="text-xs">2+ YRS</div>
               </div>
             </motion.div>
