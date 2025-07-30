@@ -72,16 +72,27 @@ const Navbar: React.FC<NavbarProps> = ({ onTerminalToggle }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3">
           <motion.div
-            className="flex items-center space-x-3 cursor-pointer"
+            className="flex items-center space-x-3 cursor-pointer hover-3d-nav"
             onClick={() => scrollToSection('home')}
             whileHover={{ scale: 1.02 }}
           >
             <motion.div
-              whileHover={{ scale: 1.15, rotate: 360 }}
-              transition={{ duration: 0.6 }}
+              whileHover={{
+                scale: 1.15,
+                rotate: 360,
+                rotateX: -10,
+                rotateY: 10,
+                z: 30
+              }}
+              transition={{
+                duration: 0.6,
+                type: "spring",
+                stiffness: 300
+              }}
               className="relative"
+              style={{ transformStyle: 'preserve-3d' }}
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg border border-white/20">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg border border-white/20 hover-3d">
                 <span className="text-white font-bold text-xl">AU</span>
               </div>
               <motion.div
