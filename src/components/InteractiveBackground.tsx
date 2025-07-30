@@ -44,62 +44,11 @@ const InteractiveBackground: React.FC = () => {
     // Reinitialize on window resize
     const handleResize = () => {
       initParticles();
-      initFloatingShapes();
     };
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  // Update mouse position
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  // Update particle positions based on mouse
-  useEffect(() => {
-    const updateParticles = () => {
-      setParticles(prevParticles => 
-        prevParticles.map(particle => {
-          const dx = mousePosition.x - particle.x;
-          const dy = mousePosition.y - particle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          const maxDistance = 100; // Distance at which particles start moving away
-          
-          if (distance < maxDistance && distance > 0) {
-            // Calculate repulsion force
-            const force = (maxDistance - distance) / maxDistance;
-            const repulsionStrength = 30; // How far they move away
-            
-            const moveX = (dx / distance) * force * repulsionStrength;
-            const moveY = (dy / distance) * force * repulsionStrength;
-            
-            return {
-              ...particle,
-              x: particle.baseX - moveX,
-              y: particle.baseY - moveY,
-            };
-          } else {
-            // Return to base position gradually
-            const returnSpeed = 0.1;
-            return {
-              ...particle,
-              x: particle.x + (particle.baseX - particle.x) * returnSpeed,
-              y: particle.y + (particle.baseY - particle.y) * returnSpeed,
-            };
-          }
-        })
-      );
-    };
-
-    const animationFrame = requestAnimationFrame(updateParticles);
-    return () => cancelAnimationFrame(animationFrame);
-  }, [mousePosition]);
 
   // Render different particle shapes
   const renderParticleShape = (particle: Particle) => {
