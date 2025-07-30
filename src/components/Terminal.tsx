@@ -408,7 +408,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
                 {/* Terminal Content */}
                 <div
                   ref={terminalRef}
-                  className="h-96 overflow-y-auto p-6 font-mono text-sm space-y-4 bg-gray-900/95 scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-gray-800"
+                  className="h-80 sm:h-96 overflow-y-auto p-4 sm:p-6 font-mono text-xs sm:text-sm space-y-3 sm:space-y-4 bg-gradient-to-b from-gray-900/95 to-black/95 scrollbar-thin scrollbar-thumb-blue-600/50 scrollbar-track-gray-800/50"
                 >
                   {commands.map((command, index) => (
                     <div key={index} className="space-y-2">
