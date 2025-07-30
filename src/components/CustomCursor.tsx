@@ -24,18 +24,25 @@ const CustomCursor: React.FC = () => {
     }
 
     let rafId: number;
+    let lastTime = 0;
 
     const updatePosition = (e: MouseEvent) => {
-      positionRef.current.x = e.clientX;
-      positionRef.current.y = e.clientY;
+      const now = performance.now();
 
-      // Cancel previous frame
-      if (rafId) {
-        cancelAnimationFrame(rafId);
+      // Throttle to ~120fps for ultra-smooth movement
+      if (now - lastTime >= 8) {
+        positionRef.current.x = e.clientX;
+        positionRef.current.y = e.clientY;
+
+        // Cancel previous frame
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+        }
+
+        // Schedule update for next frame
+        rafId = requestAnimationFrame(updateCursorPosition);
+        lastTime = now;
       }
-
-      // Schedule update for next frame
-      rafId = requestAnimationFrame(updateCursorPosition);
     };
 
     const handleMouseOver = (e: MouseEvent) => {
