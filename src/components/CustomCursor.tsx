@@ -13,27 +13,27 @@ const CustomCursor: React.FC = () => {
   // Optimized mouse position update with better throttling
   const updateMousePosition = useCallback((e: MouseEvent) => {
     const now = performance.now();
-    
-    // Higher frequency updates for smoother cursor
-    if (now - lastUpdateTime.current > 8) {
+
+    // Even higher frequency updates for smoother cursor
+    if (now - lastUpdateTime.current > 4) {
       const newX = e.clientX;
       const newY = e.clientY;
-      
+
       setMousePosition({ x: newX, y: newY });
-      
-      // Add optimized trail
+
+      // Reduced trail creation for better performance
       const trailPoint = {
         x: newX,
         y: newY,
         id: now + trailIndex.current,
-        opacity: 0.8
+        opacity: 0.6
       };
-      
+
       setTrails(prev => {
         const newTrails = [...prev, trailPoint];
-        return newTrails.slice(-6); // Keep only last 6 trails
+        return newTrails.slice(-4); // Keep only last 4 trails for better performance
       });
-      
+
       trailIndex.current += 1;
       lastUpdateTime.current = now;
     }
