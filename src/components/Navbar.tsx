@@ -137,37 +137,46 @@ const Navbar: React.FC<NavbarProps> = ({ onTerminalToggle }) => {
               </motion.button>
             ))}
 
-            {/* Terminal Button */}
-            <motion.button
-              onClick={onTerminalToggle}
-              className="relative p-3 rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg group"
-              whileHover={{ 
-                scale: 1.1, 
-                boxShadow: "0 0 25px rgba(34, 197, 94, 0.5)",
-                rotate: [0, -5, 5, 0]
-              }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Terminal size={18} />
-              <motion.div
-                className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white"
-                animate={{ 
-                  scale: [1, 1.3, 1],
-                  opacity: [1, 0.7, 1]
+            <div className="flex items-center space-x-3 ml-4">
+              {/* Terminal Button */}
+              <motion.button
+                onClick={onTerminalToggle}
+                className="relative p-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg group overflow-hidden"
+                whileHover={{
+                  scale: 1.1,
+                  boxShadow: "0 8px 25px rgba(34, 197, 94, 0.4)",
+                  y: -2
                 }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-            </motion.button>
-            
-            <motion.button
-              onClick={toggleTheme}
-              className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
-              whileHover={{ scale: 1.1, rotate: 180 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
-            </motion.button>
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <Terminal size={18} />
+                <motion.div
+                  className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white shadow-sm"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [1, 0.8, 1]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
+              </motion.button>
+
+              <motion.button
+                onClick={toggleTheme}
+                className="p-3 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 shadow-lg border border-gray-200/50 dark:border-gray-600/50"
+                whileHover={{
+                  scale: 1.1,
+                  rotate: 180,
+                  y: -2,
+                  boxShadow: "0 8px 25px rgba(0, 0, 0, 0.1)"
+                }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+              </motion.button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
