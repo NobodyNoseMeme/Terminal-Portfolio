@@ -122,10 +122,6 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
               transition={{ delay: 0.7, duration: 0.8 }}
             >
               Software Engineering Student & Full-Stack Developer
-              <br className="hidden sm:block" />
-              <span className="block sm:inline text-base sm:text-lg text-slate-500 dark:text-slate-400 font-normal mt-2 sm:mt-0">
-                Crafting digital experiences with modern technologies
-              </span>
             </motion.p>
           </div>
 
