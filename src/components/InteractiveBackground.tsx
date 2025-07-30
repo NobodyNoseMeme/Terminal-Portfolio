@@ -157,6 +157,99 @@ const InteractiveBackground: React.FC = () => {
     return () => cancelAnimationFrame(animationFrame);
   }, [mousePosition]);
 
+  // Render different particle shapes
+  const renderParticleShape = (particle: Particle) => {
+    const baseStyle = {
+      width: particle.size,
+      height: particle.size,
+      backgroundColor: particle.color,
+      opacity: particle.opacity,
+    };
+
+    switch (particle.type) {
+      case 'circle':
+        return <div className="rounded-full" style={baseStyle} />;
+      case 'square':
+        return <div className="rounded-sm" style={baseStyle} />;
+      case 'triangle':
+        return (
+          <div
+            style={{
+              width: 0,
+              height: 0,
+              borderLeft: `${particle.size / 2}px solid transparent`,
+              borderRight: `${particle.size / 2}px solid transparent`,
+              borderBottom: `${particle.size}px solid ${particle.color}`,
+              opacity: particle.opacity,
+            }}
+          />
+        );
+      case 'star':
+        return (
+          <div
+            className="relative"
+            style={{ width: particle.size, height: particle.size, opacity: particle.opacity }}
+          >
+            <div
+              className="absolute inset-0"
+              style={{
+                background: particle.color,
+                clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
+              }}
+            />
+          </div>
+        );
+      default:
+        return <div className="rounded-full" style={baseStyle} />;
+    }
+  };
+
+  // Render floating shapes
+  const renderFloatingShape = (shape: FloatingShape) => {
+    const baseStyle = {
+      width: shape.size,
+      height: shape.size,
+    };
+
+    switch (shape.type) {
+      case 'geometric':
+        return (
+          <div
+            className="border-2 border-opacity-30"
+            style={{
+              ...baseStyle,
+              borderColor: shape.color.replace('0.1', '0.3'),
+              borderRadius: Math.random() > 0.5 ? '50%' : '8px',
+            }}
+          />
+        );
+      case 'orb':
+        return (
+          <div
+            className="rounded-full"
+            style={{
+              ...baseStyle,
+              background: `radial-gradient(circle, ${shape.color}, transparent)`,
+              filter: 'blur(2px)',
+            }}
+          />
+        );
+      case 'line':
+        return (
+          <div
+            style={{
+              width: shape.size * 2,
+              height: '2px',
+              background: `linear-gradient(90deg, transparent, ${shape.color}, transparent)`,
+              borderRadius: '1px',
+            }}
+          />
+        );
+      default:
+        return <div className="rounded-full" style={baseStyle} />;
+    }
+  };
+
   return (
     <div 
       ref={containerRef}
