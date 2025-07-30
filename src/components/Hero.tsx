@@ -148,7 +148,7 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
                   </div>
                   <div className="flex items-center ml-2 sm:ml-4">
                     <Terminal className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-400 mr-1 sm:mr-2" />
-                    <span className="text-emerald-400 font-mono text-xs sm:text-sm font-medium">AbduBot Terminal</span>
+                    <span className="text-emerald-400 font-mono text-xs sm:text-sm font-medium">Bot Terminal</span>
                   </div>
                 </div>
               </div>
