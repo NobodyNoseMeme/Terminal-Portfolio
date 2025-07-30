@@ -180,32 +180,37 @@ const Navbar: React.FC<NavbarProps> = ({ onTerminalToggle }) => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-4">
+          <div className="md:hidden flex items-center space-x-2">
             <motion.button
               onClick={onTerminalToggle}
-              className="p-2 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 text-white"
-              whileHover={{ scale: 1.1 }}
+              className="p-2.5 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg"
+              whileHover={{ scale: 1.1, y: -1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Terminal size={20} />
+              <Terminal size={18} />
             </motion.button>
-            
+
             <motion.button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
-              whileHover={{ scale: 1.1 }}
+              className="p-2.5 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 shadow-lg border border-gray-200/50 dark:border-gray-600/50"
+              whileHover={{ scale: 1.1, rotate: 180, y: -1 }}
               whileTap={{ scale: 0.9 }}
             >
-              {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+              {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
             </motion.button>
-            
+
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
-              whileHover={{ scale: 1.1 }}
+              className="p-2.5 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 shadow-lg border border-gray-200/50 dark:border-gray-600/50"
+              whileHover={{ scale: 1.1, y: -1 }}
               whileTap={{ scale: 0.9 }}
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              <motion.div
+                animate={{ rotate: isOpen ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {isOpen ? <X size={20} /> : <Menu size={20} />}
+              </motion.div>
             </motion.button>
           </div>
         </div>
