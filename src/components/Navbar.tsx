@@ -106,20 +106,34 @@ const Navbar: React.FC<NavbarProps> = ({ onTerminalToggle }) => {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-2">
             {navItems.map((item) => (
               <motion.button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg ${
+                className={`relative px-5 py-2.5 text-sm font-semibold transition-all duration-300 rounded-full ${
                   activeSection === item.id
                     ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/60 dark:hover:bg-gray-800/60 backdrop-blur-sm'
                 }`}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -2,
+                  boxShadow: activeSection === item.id
+                    ? "0 8px 25px rgba(59, 130, 246, 0.4)"
+                    : "0 4px 12px rgba(0, 0, 0, 0.1)"
+                }}
                 whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 {item.label}
+                {activeSection === item.id && (
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full -z-10"
+                    layoutId="activeNav"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
               </motion.button>
             ))}
 
