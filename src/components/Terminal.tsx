@@ -389,17 +389,17 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
             {!isMinimized && (
               <>
                 {/* Quick Commands */}
-                <div className="px-6 py-3 bg-gray-800/50 border-b border-gray-700">
+                <div className="px-4 sm:px-6 py-3 bg-gray-800/50 border-b border-gray-600/30">
                   <div className="flex flex-wrap gap-2">
                     {quickCommands.map((cmd) => (
                       <motion.button
                         key={cmd.cmd}
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.05, y: -1 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => executeCommand(cmd.cmd)}
-                        className="px-3 py-1 bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 rounded-lg text-sm font-mono border border-blue-500/30 transition-colors"
+                        className="px-2 sm:px-3 py-1 bg-blue-600/20 hover:bg-blue-600/40 text-blue-300 rounded-lg text-xs sm:text-sm font-mono border border-blue-500/30 transition-all duration-200 shadow-sm hover:shadow-md"
                       >
-                        {cmd.icon} {cmd.cmd}
+                        <span className="hidden sm:inline">{cmd.icon} </span>{cmd.cmd}
                       </motion.button>
                     ))}
                   </div>
