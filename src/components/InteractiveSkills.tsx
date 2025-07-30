@@ -143,11 +143,17 @@ const InteractiveSkills: React.FC = () => {
                 style={{ height: '320px' }}
               >
                 <motion.div
-                  className="relative w-full h-full cursor-pointer preserve-3d"
+                  className="relative w-full h-full cursor-pointer preserve-3d hover-3d"
                   animate={{ rotateY: isFlipped ? 180 : 0 }}
                   transition={{ duration: 0.6, ease: "easeInOut" }}
                   onClick={() => handleCardFlip(index)}
-                  whileHover={{ scale: 1.02, y: -4 }}
+                  whileHover={{
+                    scale: 1.02,
+                    y: -8,
+                    rotateX: -3,
+                    rotateZ: 1,
+                    boxShadow: "0 25px 50px rgba(0, 0, 0, 0.2)"
+                  }}
                   style={{ transformStyle: 'preserve-3d' }}
                 >
                   {/* Front Face */}
