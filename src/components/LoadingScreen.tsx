@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code, Zap, Star, Heart, Coffee, Rocket } from 'lucide-react';
+import { Rocket } from 'lucide-react';
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void;
@@ -8,29 +8,11 @@ interface LoadingScreenProps {
 
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
-  const [currentStep, setCurrentStep] = useState(0);
   const [showFinalAnimation, setShowFinalAnimation] = useState(false);
 
-  const loadingSteps = [
-    { text: 'Brewing coffee...', icon: <Coffee className="w-5 h-5" />, color: 'from-amber-500 to-orange-500' },
-    { text: 'Loading creativity...', icon: <Star className="w-5 h-5" />, color: 'from-yellow-500 to-amber-500' },
-    { text: 'Compiling passion...', icon: <Heart className="w-5 h-5" />, color: 'from-pink-500 to-red-500' },
-    { text: 'Initializing magic...', icon: <Zap className="w-5 h-5" />, color: 'from-purple-500 to-pink-500' },
-    { text: 'Optimizing awesomeness...', icon: <Code className="w-5 h-5" />, color: 'from-blue-500 to-purple-500' },
-    { text: 'Ready for takeoff!', icon: <Rocket className="w-5 h-5" />, color: 'from-green-500 to-blue-500' },
-  ];
-
-  const funFacts = [
-    "🚀 Over 50+ projects completed",
-    "💡 500+ hours of coding",
-    "🎯 Always learning new tech",
-    "☕ Powered by caffeine",
-    "🌟 Passionate about clean code"
-  ];
-
   useEffect(() => {
-    const duration = 4000; // 4 seconds
-    const interval = 80;
+    const duration = 2500; // Reduced to 2.5 seconds
+    const interval = 50;
     const totalSteps = duration / interval;
     let step = 0;
 
@@ -39,29 +21,17 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
       const newProgress = (step / totalSteps) * 100;
       setProgress(newProgress);
 
-      // Update step based on progress
-      const stepIndex = Math.floor((newProgress / 100) * (loadingSteps.length - 1));
-      setCurrentStep(stepIndex);
-
       if (step >= totalSteps) {
         clearInterval(timer);
         setShowFinalAnimation(true);
         setTimeout(() => {
           onLoadingComplete();
-        }, 1500);
+        }, 800); // Reduced final delay
       }
     }, interval);
 
     return () => clearInterval(timer);
   }, [onLoadingComplete]);
-
-  const particles = Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 4 + 2,
-    duration: Math.random() * 3 + 2,
-  }));
 
   return (
     <AnimatePresence>
