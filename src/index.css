@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,21 +11,31 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Ultra-smooth scrolling with CSS optimization */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Optimized scroll timing */
+* {
+  scroll-behavior: smooth !important;
+  scroll-margin-top: 80px;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Hardware acceleration for smooth animations */
+/* Optimized hardware acceleration */
 .will-animate,
 [data-framer-motion] {
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  perspective: 1000;
+  will-change: transform;
 }
 
 body {
@@ -67,8 +78,25 @@ button, a, input {
   }
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Performance optimizations for all users */
+* {
+  animation-duration: 0.3s !important;
+  transition-duration: 0.2s !important;
 }
 
 /* Reduce motion for users who prefer it */
@@ -123,6 +151,31 @@ body {
 
 .rotate-y-180 {
   transform: rotateY(180deg);
+}
+
+/* Simplified hover effects for better performance */
+.hover-3d {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-3d:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.hover-3d-nav {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hover-3d-nav:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth transition optimizations */
+.smooth-transform {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
 @media (max-width: 768px) {

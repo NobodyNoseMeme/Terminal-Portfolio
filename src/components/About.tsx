@@ -97,39 +97,69 @@ const About: React.FC = () => {
                   <div className="text-sm font-medium text-gray-600 dark:text-gray-400 text-center z-10">
                     Software Engineer
                   </div>
-                  <div className="flex items-center mt-2 z-10">
-                    <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                  <motion.div
+                    className="flex items-center mt-2 z-10 cursor-pointer"
+                    whileHover={{
+                      scale: 1.1,
+                      y: -2,
+                      background: "linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1))"
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  >
+                    <motion.div
+                      whileHover={{ rotate: [0, -10, 10, 0] }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                    </motion.div>
                     <span className="text-xs text-gray-500 dark:text-gray-400 ml-1">3.6 CGPA</span>
-                  </div>
+                  </motion.div>
                 </div>
               </motion.div>
             </div>
 
             {/* Floating Elements */}
             <motion.div
-              className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center text-white font-bold shadow-lg z-20"
-              animate={{ 
+              className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center text-white font-bold shadow-lg z-20 cursor-pointer"
+              animate={{
                 y: [0, -15, 0],
                 rotate: [0, 5, 0]
               }}
               transition={{ duration: 4, repeat: Infinity }}
+              whileHover={{
+                scale: 1.1,
+                rotate: 15,
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+              }}
+              whileTap={{ scale: 0.95 }}
             >
               <div className="text-center">
-                <Code className="w-6 h-6 mx-auto mb-1" />
+                <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
+                  <Code className="w-6 h-6 mx-auto mb-1" />
+                </motion.div>
                 <div className="text-xs">DEV</div>
               </div>
             </motion.div>
-            
+
             <motion.div
-              className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white font-bold shadow-lg z-20"
-              animate={{ 
+              className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white font-bold shadow-lg z-20 cursor-pointer"
+              animate={{
                 y: [0, 15, 0],
                 rotate: [0, -5, 0]
               }}
               transition={{ duration: 4, repeat: Infinity, delay: 2 }}
+              whileHover={{
+                scale: 1.1,
+                rotate: -15,
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+              }}
+              whileTap={{ scale: 0.95 }}
             >
               <div className="text-center">
-                <Trophy className="w-8 h-8 mx-auto mb-1" />
+                <motion.div whileHover={{ scale: 1.2, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.5 }}>
+                  <Trophy className="w-8 h-8 mx-auto mb-1" />
+                </motion.div>
                 <div className="text-xs">2+ YRS</div>
               </div>
             </motion.div>
@@ -172,32 +202,62 @@ const About: React.FC = () => {
             {/* Animated Counters */}
             <div className="grid grid-cols-3 gap-6 mt-8">
               <motion.div
-                className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-xl"
+                className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-xl cursor-pointer"
                 transition={{ type: "spring", stiffness: 300 }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -8,
+                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                  background: "linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.15))"
+                }}
+                whileTap={{ scale: 0.98 }}
               >
-                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                <motion.div
+                  className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2"
+                  whileHover={{ scale: 1.1, color: "#2563eb" }}
+                >
                   {counters.cgpa.toFixed(1)}
-                </div>
+                </motion.div>
                 <div className="text-sm font-medium text-gray-600 dark:text-gray-300">CGPA</div>
               </motion.div>
-              
+
               <motion.div
-                className="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-xl"
+                className="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-xl cursor-pointer"
                 transition={{ type: "spring", stiffness: 300 }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -8,
+                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                  background: "linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(124, 58, 237, 0.15))"
+                }}
+                whileTap={{ scale: 0.98 }}
               >
-                <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
+                <motion.div
+                  className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2"
+                  whileHover={{ scale: 1.1, color: "#7c3aed" }}
+                >
                   5+
-                </div>
+                </motion.div>
                 <div className="text-sm font-medium text-gray-600 dark:text-gray-300">Projects</div>
               </motion.div>
-              
+
               <motion.div
-                className="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-xl"
+                className="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-xl cursor-pointer"
                 transition={{ type: "spring", stiffness: 300 }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -8,
+                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                  background: "linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(22, 163, 74, 0.15))"
+                }}
+                whileTap={{ scale: 0.98 }}
               >
-                <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                <motion.div
+                  className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2"
+                  whileHover={{ scale: 1.1, color: "#16a34a" }}
+                >
                   1+
-                </div>
+                </motion.div>
                 <div className="text-sm font-medium text-gray-600 dark:text-gray-300">Years Exp</div>
               </motion.div>
             </div>

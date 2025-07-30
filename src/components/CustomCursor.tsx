@@ -1,201 +1,165 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useCallback } from 'react';
 
 const CustomCursor: React.FC = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
-  const [trails, setTrails] = useState<Array<{ x: number; y: number; id: number; opacity: number }>>([]);
-  const requestRef = useRef<number>();
-  const lastUpdateTime = useRef<number>(0);
-  const trailIndex = useRef<number>(0);
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const hoverRingRef = useRef<HTMLDivElement>(null);
+  const positionRef = useRef({ x: 0, y: 0 });
+  const animationFrameRef = useRef<number>();
+  const isHoveringRef = useRef(false);
 
-  // Optimized mouse position update with better throttling
-  const updateMousePosition = useCallback((e: MouseEvent) => {
-    const now = performance.now();
-    
-    // Higher frequency updates for smoother cursor
-    if (now - lastUpdateTime.current > 8) {
-      const newX = e.clientX;
-      const newY = e.clientY;
-      
-      setMousePosition({ x: newX, y: newY });
-      
-      // Add optimized trail
-      const trailPoint = {
-        x: newX,
-        y: newY,
-        id: now + trailIndex.current,
-        opacity: 0.8
-      };
-      
-      setTrails(prev => {
-        const newTrails = [...prev, trailPoint];
-        return newTrails.slice(-6); // Keep only last 6 trails
-      });
-      
-      trailIndex.current += 1;
-      lastUpdateTime.current = now;
+  // Ultra-fast position update with requestAnimationFrame
+  const updateCursorPosition = useCallback(() => {
+    if (cursorRef.current) {
+      cursorRef.current.style.transform = `translate3d(${positionRef.current.x - 9}px, ${positionRef.current.y - 9}px, 0)`;
+    }
+    if (hoverRingRef.current) {
+      hoverRingRef.current.style.transform = `translate3d(${positionRef.current.x - 14}px, ${positionRef.current.y - 14}px, 0)`;
     }
   }, []);
 
-  // Handle mouse enter/leave for visibility
-  const handleMouseEnter = useCallback(() => {
-    setIsVisible(true);
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    setIsVisible(false);
-    setTrails([]);
-  }, []);
-
-  // Handle hover states
-  const handleMouseOver = useCallback((e: MouseEvent) => {
-    const target = e.target as HTMLElement;
-    const isClickable = target.tagName === 'BUTTON' || 
-                       target.tagName === 'A' || 
-                       target.role === 'button' ||
-                       target.style.cursor === 'pointer' ||
-                       target.classList.contains('cursor-pointer') ||
-                       getComputedStyle(target).cursor === 'pointer';
-    setIsHovering(isClickable);
-  }, []);
-
   useEffect(() => {
-    // Use passive listeners for better performance
-    document.addEventListener('mousemove', updateMousePosition, { passive: true });
-    document.addEventListener('mouseenter', handleMouseEnter, { passive: true });
-    document.addEventListener('mouseleave', handleMouseLeave, { passive: true });
+    // Skip on mobile
+    if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+      return;
+    }
+
+    let rafId: number;
+    let lastTime = 0;
+
+    const updatePosition = (e: MouseEvent) => {
+      const now = performance.now();
+
+      // Throttle to 60fps for better performance
+      if (now - lastTime >= 16) {
+        positionRef.current.x = e.clientX;
+        positionRef.current.y = e.clientY;
+
+        // Cancel previous frame
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+        }
+
+        // Schedule update for next frame
+        rafId = requestAnimationFrame(updateCursorPosition);
+        lastTime = now;
+      }
+    };
+
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+
+      // Skip processing if target is inside terminal to prevent lag
+      const isInsideTerminal = target.closest('[data-terminal-overlay]');
+      if (isInsideTerminal) {
+        return;
+      }
+
+      // Enhanced button detection with better targeting
+      const isClickable = target.tagName === 'BUTTON' ||
+                         target.tagName === 'A' ||
+                         target.role === 'button' ||
+                         target.classList.contains('cursor-pointer') ||
+                         target.classList.contains('hover-3d') ||
+                         target.classList.contains('hover-3d-nav') ||
+                         target.closest('button') !== null ||
+                         target.closest('a') !== null ||
+                         target.closest('[role="button"]') !== null;
+
+      isHoveringRef.current = isClickable;
+
+      if (cursorRef.current) {
+        if (isClickable) {
+          cursorRef.current.style.width = '28px';
+          cursorRef.current.style.height = '28px';
+          cursorRef.current.style.background = 'linear-gradient(45deg, #f59e0b, #ef4444)';
+          cursorRef.current.style.borderRadius = '8px';
+          cursorRef.current.style.rotate = '45deg';
+          cursorRef.current.style.boxShadow = '0 0 20px rgba(245, 158, 11, 0.5)';
+        } else {
+          cursorRef.current.style.width = '18px';
+          cursorRef.current.style.height = '18px';
+          cursorRef.current.style.background = 'linear-gradient(45deg, #3b82f6, #8b5cf6)';
+          cursorRef.current.style.borderRadius = '50%';
+          cursorRef.current.style.rotate = '0deg';
+          cursorRef.current.style.boxShadow = 'none';
+        }
+      }
+
+      if (hoverRingRef.current) {
+        hoverRingRef.current.style.opacity = isClickable ? '0.7' : '0';
+        hoverRingRef.current.style.transform = `translate3d(${positionRef.current.x - (isClickable ? 16 : 14)}px, ${positionRef.current.y - (isClickable ? 16 : 14)}px, 0)`;
+      }
+    };
+
+    // Add event listeners
+    document.addEventListener('mousemove', updatePosition, { passive: true });
     document.addEventListener('mouseover', handleMouseOver, { passive: true });
-    
-    // Show cursor immediately on mount
-    setIsVisible(true);
+
+    // Initialize position
+    const initPosition = () => {
+      if (cursorRef.current && hoverRingRef.current) {
+        cursorRef.current.style.transform = 'translate3d(-100px, -100px, 0)';
+        hoverRingRef.current.style.transform = 'translate3d(-100px, -100px, 0)';
+      }
+    };
+    initPosition();
 
     return () => {
-      document.removeEventListener('mousemove', updateMousePosition);
-      document.removeEventListener('mouseenter', handleMouseEnter);
-      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mousemove', updatePosition);
       document.removeEventListener('mouseover', handleMouseOver);
-      if (requestRef.current) {
-        cancelAnimationFrame(requestRef.current);
+      if (rafId) {
+        cancelAnimationFrame(rafId);
       }
     };
-  }, [updateMousePosition, handleMouseEnter, handleMouseLeave, handleMouseOver]);
+  }, [updateCursorPosition]);
 
-  // Optimized trail cleanup using RAF
-  useEffect(() => {
-    const cleanup = () => {
-      setTrails(prev => 
-        prev.map(trail => ({
-          ...trail,
-          opacity: trail.opacity * 0.95
-        })).filter(trail => trail.opacity > 0.1)
-      );
-      
-      requestRef.current = requestAnimationFrame(cleanup);
-    };
-    
-    requestRef.current = requestAnimationFrame(cleanup);
-
-    return () => {
-      if (requestRef.current) {
-        cancelAnimationFrame(requestRef.current);
-      }
-    };
-  }, []);
-
-  // Don't render on mobile or when not visible
+  // Don't render on mobile
   if (typeof window !== 'undefined' && window.innerWidth <= 768) {
-    return null;
-  }
-
-  if (!isVisible) {
     return null;
   }
 
   return (
     <>
-      {/* Main cursor with enhanced visibility and smooth animation */}
-      <motion.div
-        className="cursor"
+      {/* Main cursor */}
+      <div
+        ref={cursorRef}
         style={{
           position: 'fixed',
-          left: mousePosition.x - 10,
-          top: mousePosition.y - 10,
-          width: isHovering ? '24px' : '20px',
-          height: isHovering ? '24px' : '20px',
-          background: isHovering 
-            ? 'linear-gradient(45deg, #8b5cf6, #3b82f6)' 
-            : 'linear-gradient(45deg, #3b82f6, #8b5cf6)',
+          top: '0',
+          left: '0',
+          width: '18px',
+          height: '18px',
+          background: 'linear-gradient(45deg, #3b82f6, #8b5cf6)',
           borderRadius: '50%',
           pointerEvents: 'none',
           zIndex: 99999,
           mixBlendMode: 'difference',
-          transition: 'width 0.2s ease, height 0.2s ease, background 0.2s ease',
-        }}
-        animate={{
-          scale: isHovering ? [1, 1.3, 1] : [1, 1.1, 1],
-        }}
-        transition={{
-          duration: isHovering ? 0.3 : 0.6,
-          repeat: Infinity,
-          ease: "easeInOut"
+          transition: 'all 0.06s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          willChange: 'transform',
+          contain: 'layout style paint',
         }}
       />
 
-      {/* Enhanced cursor trails with better performance */}
-      {trails.map((trail) => (
-        <motion.div
-          key={trail.id}
-          initial={{ 
-            opacity: trail.opacity,
-            scale: 1,
-          }}
-          animate={{ 
-            opacity: 0,
-            scale: 0.3,
-          }}
-          transition={{
-            duration: 0.6,
-            ease: [0.25, 0.1, 0.25, 1], // Custom easing for smoother animation
-          }}
-          style={{
-            position: 'fixed',
-            left: trail.x - 3,
-            top: trail.y - 3,
-            width: '6px',
-            height: '6px',
-            background: `rgba(59, 130, 246, ${trail.opacity})`,
-            borderRadius: '50%',
-            pointerEvents: 'none',
-            zIndex: 99998,
-          }}
-        />
-      ))}
-
-      {/* Hover effect ring */}
-      {isHovering && (
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 2, opacity: 0.3 }}
-          exit={{ scale: 0, opacity: 0 }}
-          style={{
-            position: 'fixed',
-            left: mousePosition.x - 20,
-            top: mousePosition.y - 20,
-            width: '40px',
-            height: '40px',
-            border: '2px solid #3b82f6',
-            borderRadius: '50%',
-            pointerEvents: 'none',
-            zIndex: 99997,
-          }}
-          transition={{
-            duration: 0.3,
-            ease: "easeOut"
-          }}
-        />
-      )}
+      {/* Enhanced hover ring */}
+      <div
+        ref={hoverRingRef}
+        style={{
+          position: 'fixed',
+          top: '0',
+          left: '0',
+          width: '32px',
+          height: '32px',
+          border: '2px solid #f59e0b',
+          borderRadius: '8px',
+          pointerEvents: 'none',
+          zIndex: 99997,
+          opacity: '0',
+          transition: 'all 0.06s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          willChange: 'transform',
+          contain: 'layout style paint',
+          boxShadow: '0 0 15px rgba(245, 158, 11, 0.3)',
+        }}
+      />
     </>
   );
 };

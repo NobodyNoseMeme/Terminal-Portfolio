@@ -308,6 +308,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         exit={{ opacity: 0 }}
         className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm"
         onClick={handleBackdropClick}
+        data-terminal-overlay
         style={{
           position: 'fixed',
           top: 0,
@@ -318,16 +319,16 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         }}
       >
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 50 }}
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 50 }}
-          transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="fixed inset-4 md:inset-8 lg:inset-16 flex items-center justify-center pointer-events-none"
+          exit={{ opacity: 0, scale: 0.95, y: 30 }}
+          transition={{ type: "spring", damping: 20, stiffness: 400 }}
+          className="fixed inset-2 sm:inset-4 md:inset-8 lg:inset-12 xl:inset-16 flex items-center justify-center pointer-events-none"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="w-full max-w-4xl max-h-[90vh] bg-gray-900 dark:bg-black rounded-2xl shadow-2xl overflow-hidden border border-gray-700 backdrop-blur-sm pointer-events-auto">
+          <div className="w-full max-w-5xl max-h-[95vh] bg-gradient-to-b from-gray-900 to-black rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden border border-gray-600/50 backdrop-blur-sm pointer-events-auto">
             {/* Terminal Header */}
-            <div className="flex items-center justify-between px-6 py-4 bg-gray-800 dark:bg-gray-900 border-b border-gray-700">
+            <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-gray-800 to-gray-900 border-b border-gray-600/50">
               <div className="flex items-center space-x-4">
                 <div className="flex space-x-2">
                   <motion.div
@@ -358,7 +359,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
                 </div>
                 <div className="flex items-center space-x-2">
                   <TerminalIcon className="w-5 h-5 text-emerald-400" />
-                  <span className="text-emerald-400 font-mono font-medium">AbduBot Terminal v2.0</span>
+                  <span className="text-emerald-400 font-mono font-medium">Bot Terminal</span>
                   <motion.div
                     className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-400' : 'bg-red-400'}`}
                     animate={{ scale: [1, 1.2, 1] }}
@@ -389,17 +390,17 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
             {!isMinimized && (
               <>
                 {/* Quick Commands */}
-                <div className="px-6 py-3 bg-gray-800/50 border-b border-gray-700">
+                <div className="px-4 sm:px-6 py-3 bg-gray-800/50 border-b border-gray-600/30">
                   <div className="flex flex-wrap gap-2">
                     {quickCommands.map((cmd) => (
                       <motion.button
                         key={cmd.cmd}
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.05, y: -1 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => executeCommand(cmd.cmd)}
-                        className="px-3 py-1 bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 rounded-lg text-sm font-mono border border-blue-500/30 transition-colors"
+                        className="px-2 sm:px-3 py-1 bg-blue-600/20 hover:bg-blue-600/40 text-blue-300 rounded-lg text-xs sm:text-sm font-mono border border-blue-500/30 transition-all duration-200 shadow-sm hover:shadow-md"
                       >
-                        {cmd.icon} {cmd.cmd}
+                        <span className="hidden sm:inline">{cmd.icon} </span>{cmd.cmd}
                       </motion.button>
                     ))}
                   </div>
@@ -408,7 +409,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
                 {/* Terminal Content */}
                 <div
                   ref={terminalRef}
-                  className="h-96 overflow-y-auto p-6 font-mono text-sm space-y-4 bg-gray-900/95 scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-gray-800"
+                  className="h-80 sm:h-96 overflow-y-auto p-4 sm:p-6 font-mono text-xs sm:text-sm space-y-3 sm:space-y-4 bg-gradient-to-b from-gray-900/95 to-black/95 scrollbar-thin scrollbar-thumb-blue-600/50 scrollbar-track-gray-800/50"
                 >
                   {commands.map((command, index) => (
                     <div key={index} className="space-y-2">
@@ -449,29 +450,29 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Input Area */}
-                <form onSubmit={handleSubmit} className="p-6 bg-gray-800 border-t border-gray-700">
-                  <div className="flex items-center space-x-4">
-                    <span className="text-emerald-400 font-mono">abdullah@portfolio:~$</span>
+                <form onSubmit={handleSubmit} className="p-4 sm:p-6 bg-gradient-to-r from-gray-800 to-gray-900 border-t border-gray-600/50">
+                  <div className="flex items-center space-x-2 sm:space-x-4">
+                    <span className="text-emerald-400 font-mono text-xs sm:text-sm">abdullah@portfolio:~$</span>
                     <input
                       ref={inputRef}
                       type="text"
                       value={currentInput}
                       onChange={(e) => setCurrentInput(e.target.value)}
                       onKeyDown={handleKeyDown}
-                      className="flex-1 bg-transparent text-white font-mono focus:outline-none placeholder-gray-500"
+                      className="flex-1 bg-transparent text-white font-mono focus:outline-none placeholder-gray-500 text-xs sm:text-sm"
                       placeholder="Type a command or ask me anything..."
                       autoComplete="off"
                     />
                     <motion.button
                       type="submit"
-                      whileHover={{ scale: 1.1 }}
+                      whileHover={{ scale: 1.1, color: "#60a5fa" }}
                       whileTap={{ scale: 0.9 }}
-                      className="p-2 text-blue-400 hover:text-blue-300 transition-colors"
+                      className="p-2 text-blue-400 hover:text-blue-300 transition-colors rounded-md hover:bg-blue-600/10"
                     >
-                      <Send className="w-4 h-4" />
+                      <Send className="w-3 h-3 sm:w-4 sm:h-4" />
                     </motion.button>
                   </div>
-                  <div className="text-xs text-gray-500 mt-2">
+                  <div className="text-xs text-gray-500 mt-2 hidden sm:block">
                     Press ESC to close • Use ↑/↓ for command history
                   </div>
                 </form>

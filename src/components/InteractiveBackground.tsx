@@ -5,8 +5,6 @@ interface Particle {
   id: number;
   x: number;
   y: number;
-  baseX: number;
-  baseY: number;
   size: number;
   color: string;
   opacity: number;
@@ -14,31 +12,30 @@ interface Particle {
 
 const InteractiveBackground: React.FC = () => {
   const [particles, setParticles] = useState<Particle[]>([]);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Initialize particles
+  // Simplified particle initialization
   useEffect(() => {
     const initParticles = () => {
       const newParticles: Particle[] = [];
-      const particleCount = 25; // Small number for subtle effect
-      
+      const particleCount = 8; // Drastically reduced for performance
+
+      const colors = ['#3b82f650', '#8b5cf650', '#06b6d450', '#10b98150'];
+
       for (let i = 0; i < particleCount; i++) {
         const x = Math.random() * window.innerWidth;
         const y = Math.random() * window.innerHeight;
-        
+
         newParticles.push({
           id: i,
           x,
           y,
-          baseX: x,
-          baseY: y,
           size: Math.random() * 6 + 4, // 4-10px
-          color: ['#3b82f6', '#8b5cf6', '#06b6d4', '#10b981'][Math.floor(Math.random() * 4)],
-          opacity: Math.random() * 0.4 + 0.3, // 0.3-0.7 opacity
+          color: colors[Math.floor(Math.random() * colors.length)],
+          opacity: Math.random() * 0.3 + 0.3, // 0.3-0.6 opacity
         });
       }
-      
+
       setParticles(newParticles);
     };
 
@@ -53,62 +50,13 @@ const InteractiveBackground: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Update mouse position
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  // Update particle positions based on mouse
-  useEffect(() => {
-    const updateParticles = () => {
-      setParticles(prevParticles => 
-        prevParticles.map(particle => {
-          const dx = mousePosition.x - particle.x;
-          const dy = mousePosition.y - particle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          const maxDistance = 100; // Distance at which particles start moving away
-          
-          if (distance < maxDistance && distance > 0) {
-            // Calculate repulsion force
-            const force = (maxDistance - distance) / maxDistance;
-            const repulsionStrength = 30; // How far they move away
-            
-            const moveX = (dx / distance) * force * repulsionStrength;
-            const moveY = (dy / distance) * force * repulsionStrength;
-            
-            return {
-              ...particle,
-              x: particle.baseX - moveX,
-              y: particle.baseY - moveY,
-            };
-          } else {
-            // Return to base position gradually
-            const returnSpeed = 0.1;
-            return {
-              ...particle,
-              x: particle.x + (particle.baseX - particle.x) * returnSpeed,
-              y: particle.y + (particle.baseY - particle.y) * returnSpeed,
-            };
-          }
-        })
-      );
-    };
-
-    const animationFrame = requestAnimationFrame(updateParticles);
-    return () => cancelAnimationFrame(animationFrame);
-  }, [mousePosition]);
-
   return (
-    <div 
+    <div
       ref={containerRef}
       className="fixed inset-0 pointer-events-none z-0"
       style={{ overflow: 'hidden' }}
     >
+      {/* Simplified particles */}
       {particles.map(particle => (
         <motion.div
           key={particle.id}
@@ -122,46 +70,23 @@ const InteractiveBackground: React.FC = () => {
             opacity: particle.opacity,
           }}
           animate={{
-            x: particle.x - particle.baseX,
-            y: particle.y - particle.baseY,
+            y: [0, -20, 0],
+            scale: [1, 1.1, 1],
           }}
           transition={{
-            type: "spring",
-            stiffness: 150,
-            damping: 20,
-            mass: 0.5,
+            duration: Math.random() * 8 + 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: Math.random() * 5,
           }}
         />
       ))}
-      
-      {/* Add some subtle floating shapes */}
-      {[...Array(8)].map((_, i) => (
-        <motion.div
-          key={`shape-${i}`}
-          className="absolute"
-          style={{
-            left: Math.random() * window.innerWidth,
-            top: Math.random() * window.innerHeight,
-          }}
-          animate={{
-            y: [0, -20, 0],
-            x: [0, Math.random() * 10 - 5, 0],
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: Math.random() * 10 + 15,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
-          <div
-            className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400/40 to-purple-400/40"
-            style={{
-              transform: `scale(${Math.random() * 2 + 1})`,
-            }}
-          />
-        </motion.div>
-      ))}
+
+      {/* Simple gradient overlays for depth */}
+      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-blue-500/5 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-purple-500/5 to-transparent" />
+      <div className="absolute top-1/2 left-0 w-32 h-full bg-gradient-to-r from-indigo-500/5 to-transparent" />
+      <div className="absolute top-1/2 right-0 w-32 h-full bg-gradient-to-l from-cyan-500/5 to-transparent" />
     </div>
   );
 };
