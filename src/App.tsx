@@ -59,7 +59,7 @@ function App() {
     <ThemeProvider>
       <CustomCursor />
       <InteractiveBackground />
-      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-500 relative z-10 overflow-x-hidden max-w-full smooth-animations">
+      <div className="min-h-screen bg-white dark:bg-gray-900 theme-transition relative z-10 overflow-x-hidden max-w-full smooth-animations">
         <AnimatePresence mode="wait">
           {isLoading ? (
             <LoadingScreen key="loading" onLoadingComplete={handleLoadingComplete} />

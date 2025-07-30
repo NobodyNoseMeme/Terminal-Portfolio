@@ -91,10 +91,10 @@ const Navbar: React.FC<NavbarProps> = ({ onTerminalToggle }) => {
                 <span className="text-white font-bold text-xl">AU</span>
               </div>
               <motion.div
-                className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-40"
+                className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-20 dark:opacity-40"
                 animate={{
                   scale: [1, 1.05, 1],
-                  opacity: [0.4, 0.7, 0.4]
+                  opacity: [0.15, 0.3, 0.15]
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
