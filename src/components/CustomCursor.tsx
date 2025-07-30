@@ -134,29 +134,30 @@ const CustomCursor: React.FC = () => {
           pointerEvents: 'none',
           zIndex: 99999,
           mixBlendMode: 'difference',
-          transition: 'width 0.08s ease, height 0.08s ease, background 0.08s ease, border-radius 0.08s ease, rotate 0.08s ease',
+          transition: 'all 0.06s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
           willChange: 'transform',
           contain: 'layout style paint',
         }}
       />
 
-      {/* Hover ring */}
+      {/* Enhanced hover ring */}
       <div
         ref={hoverRingRef}
         style={{
           position: 'fixed',
           top: '0',
           left: '0',
-          width: '28px',
-          height: '28px',
+          width: '32px',
+          height: '32px',
           border: '2px solid #f59e0b',
-          borderRadius: '6px',
+          borderRadius: '8px',
           pointerEvents: 'none',
           zIndex: 99997,
           opacity: '0',
-          transition: 'opacity 0.08s ease',
+          transition: 'all 0.06s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
           willChange: 'transform',
           contain: 'layout style paint',
+          boxShadow: '0 0 15px rgba(245, 158, 11, 0.3)',
         }}
       />
     </>
