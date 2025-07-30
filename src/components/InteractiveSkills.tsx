@@ -14,44 +14,62 @@ const InteractiveSkills: React.FC = () => {
       icon: Code,
       color: 'from-blue-500 to-cyan-500',
       skills: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap', 'Tailwind CSS', 'Responsive Design'],
-      level: 95
+      level: 95,
+      details: 'Crafting beautiful, responsive user interfaces with modern frameworks and clean, semantic code.'
     },
     {
       category: 'Backend',
       icon: Server,
       color: 'from-green-500 to-emerald-500',
       skills: ['PHP', 'Node.js', 'Express.js', 'RESTful APIs'],
-      level: 90
+      level: 90,
+      details: 'Building robust server-side applications with efficient APIs and scalable architecture.'
     },
     {
       category: 'Database',
       icon: Database,
       color: 'from-purple-500 to-violet-500',
       skills: ['MySQL', 'MongoDB'],
-      level: 85
+      level: 85,
+      details: 'Designing efficient database schemas and optimizing queries for performance.'
     },
     {
       category: 'Programming',
       icon: Brain,
       color: 'from-pink-500 to-rose-500',
       skills: ['C', 'C++', 'JavaScript', 'Python'],
-      level: 88
+      level: 88,
+      details: 'Strong foundation in multiple programming languages with focus on clean, efficient code.'
     },
     {
       category: 'Tools & DevOps',
       icon: Globe,
       color: 'from-orange-500 to-red-500',
       skills: ['Git & GitHub', 'VS Code', 'Postman', 'Version Control'],
-      level: 85
+      level: 85,
+      details: 'Streamlining development workflow with modern tools and collaborative practices.'
     },
     {
       category: 'Specializations',
       icon: Zap,
       color: 'from-indigo-500 to-purple-500',
       skills: ['Machine Learning', 'SEO & Optimization', 'Agile Methodology', 'Debugging & Testing'],
-      level: 80
+      level: 80,
+      details: 'Exploring cutting-edge technologies and implementing best practices in development.'
     }
   ];
+
+  const handleCardFlip = (index: number) => {
+    setFlippedCards(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet.delete(index);
+      } else {
+        newSet.add(index);
+      }
+      return newSet;
+    });
+  };
 
   return (
     <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-800">
