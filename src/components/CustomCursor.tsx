@@ -29,8 +29,8 @@ const CustomCursor: React.FC = () => {
     const updatePosition = (e: MouseEvent) => {
       const now = performance.now();
 
-      // Throttle to ~120fps for ultra-smooth movement
-      if (now - lastTime >= 8) {
+      // Throttle to 60fps for better performance
+      if (now - lastTime >= 16) {
         positionRef.current.x = e.clientX;
         positionRef.current.y = e.clientY;
 
