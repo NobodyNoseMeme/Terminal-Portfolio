@@ -358,7 +358,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
                 </div>
                 <div className="flex items-center space-x-2">
                   <TerminalIcon className="w-5 h-5 text-emerald-400" />
-                  <span className="text-emerald-400 font-mono font-medium">AbduBot Terminal v2.0</span>
+                  <span className="text-emerald-400 font-mono font-medium">Bot Terminal</span>
                   <motion.div
                     className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-400' : 'bg-red-400'}`}
                     animate={{ scale: [1, 1.2, 1] }}
