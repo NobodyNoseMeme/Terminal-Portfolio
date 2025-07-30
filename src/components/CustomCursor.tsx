@@ -54,33 +54,40 @@ const CustomCursor: React.FC = () => {
         return;
       }
 
+      // Enhanced button detection with better targeting
       const isClickable = target.tagName === 'BUTTON' ||
                          target.tagName === 'A' ||
                          target.role === 'button' ||
                          target.classList.contains('cursor-pointer') ||
+                         target.classList.contains('hover-3d') ||
+                         target.classList.contains('hover-3d-nav') ||
                          target.closest('button') !== null ||
-                         target.closest('a') !== null;
+                         target.closest('a') !== null ||
+                         target.closest('[role="button"]') !== null;
 
       isHoveringRef.current = isClickable;
 
       if (cursorRef.current) {
         if (isClickable) {
-          cursorRef.current.style.width = '24px';
-          cursorRef.current.style.height = '24px';
+          cursorRef.current.style.width = '28px';
+          cursorRef.current.style.height = '28px';
           cursorRef.current.style.background = 'linear-gradient(45deg, #f59e0b, #ef4444)';
-          cursorRef.current.style.borderRadius = '6px';
+          cursorRef.current.style.borderRadius = '8px';
           cursorRef.current.style.rotate = '45deg';
+          cursorRef.current.style.boxShadow = '0 0 20px rgba(245, 158, 11, 0.5)';
         } else {
           cursorRef.current.style.width = '18px';
           cursorRef.current.style.height = '18px';
           cursorRef.current.style.background = 'linear-gradient(45deg, #3b82f6, #8b5cf6)';
           cursorRef.current.style.borderRadius = '50%';
           cursorRef.current.style.rotate = '0deg';
+          cursorRef.current.style.boxShadow = 'none';
         }
       }
 
       if (hoverRingRef.current) {
-        hoverRingRef.current.style.opacity = isClickable ? '0.6' : '0';
+        hoverRingRef.current.style.opacity = isClickable ? '0.7' : '0';
+        hoverRingRef.current.style.transform = `translate3d(${positionRef.current.x - (isClickable ? 16 : 14)}px, ${positionRef.current.y - (isClickable ? 16 : 14)}px, 0)`;
       }
     };
 
