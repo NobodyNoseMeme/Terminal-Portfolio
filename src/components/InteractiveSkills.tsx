@@ -197,39 +197,64 @@ const InteractiveSkills: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Back Face */}
+                  {/* Back Face - Individual Skill Percentages */}
                   <div
-                    className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col justify-center text-center"
+                    className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 overflow-y-auto"
                     style={{
                       backfaceVisibility: 'hidden',
                       transform: 'rotateY(180deg)'
                     }}
                   >
-                    <motion.div
-                      className={`w-16 h-16 rounded-full bg-gradient-to-r ${skillCategory.color} flex items-center justify-center mx-auto mb-4`}
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      <IconComponent className="w-8 h-8 text-white" />
-                    </motion.div>
+                    <div className="text-center mb-4">
+                      <motion.div
+                        className={`w-12 h-12 rounded-full bg-gradient-to-r ${skillCategory.color} flex items-center justify-center mx-auto mb-2`}
+                        animate={{ scale: [1, 1.05, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        <IconComponent className="w-6 h-6 text-white" />
+                      </motion.div>
+                      <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100">
+                        {skillCategory.category}
+                      </h3>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                        Skill Breakdown
+                      </p>
+                    </div>
 
-                    <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
-                      {skillCategory.level}%
-                    </h3>
-
-                    <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
-                      {skillCategory.details}
-                    </p>
-
-                    <div className="flex items-center justify-center">
-                      <div className="w-24 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    {/* Individual Skill Percentages */}
+                    <div className="space-y-3">
+                      {skillCategory.skills.map((skill, skillIndex) => (
                         <motion.div
-                          className={`h-full bg-gradient-to-r ${skillCategory.color} rounded-full`}
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skillCategory.level}%` }}
-                          transition={{ duration: 1.5, delay: 0.2 }}
-                        />
-                      </div>
+                          key={skill.name}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3, delay: skillIndex * 0.1 }}
+                          className="bg-white/50 dark:bg-gray-700/50 rounded-lg p-3"
+                        >
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                              {skill.name}
+                            </span>
+                            <span className="text-sm font-bold text-gray-800 dark:text-gray-200">
+                              {skill.percentage}%
+                            </span>
+                          </div>
+                          <div className="w-full h-1.5 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+                            <motion.div
+                              className={`h-full bg-gradient-to-r ${skillCategory.color} rounded-full`}
+                              initial={{ width: 0 }}
+                              animate={{ width: `${skill.percentage}%` }}
+                              transition={{ duration: 1, delay: skillIndex * 0.2 }}
+                            />
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    <div className="text-center mt-4 pt-3 border-t border-gray-200 dark:border-gray-600">
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        Overall: {skillCategory.level}%
+                      </p>
                     </div>
                   </div>
                 </motion.div>
