@@ -125,16 +125,10 @@ const Navbar: React.FC<NavbarProps> = ({ onTerminalToggle }) => {
                 }`}
                 whileHover={{
                   scale: 1.05,
-                  y: -4,
-                  rotateX: -5,
-                  z: 20,
-                  boxShadow: activeSection === item.id
-                    ? "0 15px 30px rgba(59, 130, 246, 0.5)"
-                    : "0 8px 20px rgba(0, 0, 0, 0.15)"
+                  y: -2
                 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                style={{ transformStyle: 'preserve-3d' }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 {item.label}
                 {activeSection === item.id && (
