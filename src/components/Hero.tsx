@@ -209,13 +209,14 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
               className="group w-full sm:w-auto min-w-[200px] px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold text-sm sm:text-base md:text-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center space-x-2 hover-3d"
               whileHover={{
                 scale: 1.05,
-                y: -6,
-                rotateX: -5,
-                rotateY: 2,
-                z: 30,
+                y: -8,
+                rotateX: -8,
+                rotateY: 3,
+                z: 40,
                 boxShadow: "0 25px 50px rgba(59, 130, 246, 0.3)"
               }}
               whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
               style={{ transformStyle: 'preserve-3d' }}
             >
               <span>Explore My Work</span>
@@ -227,13 +228,14 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
               className="w-full sm:w-auto min-w-[200px] px-6 sm:px-8 py-3 sm:py-4 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-xl font-semibold text-sm sm:text-base md:text-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300 hover-3d"
               whileHover={{
                 scale: 1.05,
-                y: -6,
-                rotateX: -5,
-                rotateY: -2,
-                z: 30,
+                y: -8,
+                rotateX: -8,
+                rotateY: -3,
+                z: 40,
                 boxShadow: "0 25px 50px rgba(0, 0, 0, 0.1)"
               }}
               whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
               style={{ transformStyle: 'preserve-3d' }}
             >
               Get In Touch
@@ -254,13 +256,14 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
               className="p-2 sm:p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-blue-600 hover:text-blue-700 hover-3d"
               whileHover={{
                 scale: 1.1,
-                y: -6,
-                rotateX: -8,
-                rotateY: 5,
-                z: 20,
+                y: -8,
+                rotateX: -10,
+                rotateY: 6,
+                z: 30,
                 boxShadow: "0 20px 40px rgba(59, 130, 246, 0.2)"
               }}
               whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 500, damping: 30 }}
               style={{ transformStyle: 'preserve-3d' }}
             >
               <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -273,13 +276,14 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
               className="p-2 sm:p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover-3d"
               whileHover={{
                 scale: 1.1,
-                y: -6,
-                rotateX: -8,
+                y: -8,
+                rotateX: -10,
                 rotateY: 0,
-                z: 20,
+                z: 30,
                 boxShadow: "0 20px 40px rgba(0, 0, 0, 0.15)"
               }}
               whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 500, damping: 30 }}
               style={{ transformStyle: 'preserve-3d' }}
             >
               <Github className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -290,13 +294,14 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
               className="p-2 sm:p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-red-600 hover:text-red-700 hover-3d"
               whileHover={{
                 scale: 1.1,
-                y: -6,
-                rotateX: -8,
-                rotateY: -5,
-                z: 20,
+                y: -8,
+                rotateX: -10,
+                rotateY: -6,
+                z: 30,
                 boxShadow: "0 20px 40px rgba(239, 68, 68, 0.2)"
               }}
               whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 500, damping: 30 }}
               style={{ transformStyle: 'preserve-3d' }}
             >
               <Mail className="w-5 h-5 sm:w-6 sm:h-6" />

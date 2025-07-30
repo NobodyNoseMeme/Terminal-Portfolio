@@ -41,13 +41,27 @@ html {
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  width: 100vw;
+  max-width: 100vw;
 }
 
 #root {
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Prevent horizontal scroll on all elements */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden !important;
 }
 
 /* Performance optimizations */
@@ -94,9 +108,10 @@ button, a, input {
 }
 
 /* Performance optimizations for all users */
-* {
-  animation-duration: 0.3s !important;
-  transition-duration: 0.2s !important;
+.smooth-animations * {
+  animation-duration: 0.4s;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Reduce motion for users who prefer it */
@@ -155,27 +170,55 @@ body {
 
 /* Simplified hover effects for better performance */
 .hover-3d {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-3d:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
 .hover-3d-nav {
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-3d-nav:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
 /* Smooth transition optimizations */
 .smooth-transform {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
+}
+
+/* Enhanced smooth scrolling */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100vw;
+    max-width: 100vw;
+  }
+  
+  * {
+    max-width: 100vw;
+  }
+  
+  /* Faster animations on mobile for better performance */
+  .hover-3d {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .hover-3d-nav {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
 }
 
 @media (max-width: 768px) {

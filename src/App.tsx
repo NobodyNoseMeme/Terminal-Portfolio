@@ -59,7 +59,7 @@ function App() {
     <ThemeProvider>
       <CustomCursor />
       <InteractiveBackground />
-      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300 relative z-10">
+      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-500 relative z-10 overflow-x-hidden max-w-full smooth-animations">
         <AnimatePresence mode="wait">
           {isLoading ? (
             <LoadingScreen key="loading" onLoadingComplete={handleLoadingComplete} />
@@ -68,7 +68,8 @@ function App() {
               key="main"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="overflow-x-hidden max-w-full"
             >
               <Navbar onTerminalToggle={toggleTerminal} />
               <AnimatePresence>

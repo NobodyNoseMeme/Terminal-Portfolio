@@ -8,7 +8,7 @@ const Education: React.FC = () => {
 
   const education = [
     {
-      degree: 'BSc Software Engineering',
+      degree: 'BS Software Engineering',
       institution: 'University of Central Punjab',
       period: '2022 - 2026',
       location: 'Lahore, Pakistan',
