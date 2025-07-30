@@ -78,19 +78,14 @@ const Navbar: React.FC<NavbarProps> = ({ onTerminalToggle }) => {
           >
             <motion.div
               whileHover={{
-                scale: 1.15,
-                rotate: 360,
-                rotateX: -10,
-                rotateY: 10,
-                z: 30
+                scale: 1.1,
+                rotate: 180
               }}
               transition={{
-                duration: 0.6,
-                type: "spring",
-                stiffness: 300
+                duration: 0.3,
+                ease: "easeOut"
               }}
               className="relative"
-              style={{ transformStyle: 'preserve-3d' }}
             >
               <div className="w-12 h-12 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg border border-white/20 hover-3d">
                 <span className="text-white font-bold text-xl">AU</span>
