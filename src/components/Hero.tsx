@@ -206,9 +206,17 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
           >
             <motion.button
               onClick={() => scrollToSection('projects')}
-              className="group w-full sm:w-auto min-w-[200px] px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold text-sm sm:text-base md:text-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center space-x-2"
-              whileHover={{ scale: 1.05, y: -2 }}
+              className="group w-full sm:w-auto min-w-[200px] px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold text-sm sm:text-base md:text-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center space-x-2 hover-3d"
+              whileHover={{
+                scale: 1.05,
+                y: -6,
+                rotateX: -5,
+                rotateY: 2,
+                z: 30,
+                boxShadow: "0 25px 50px rgba(59, 130, 246, 0.3)"
+              }}
               whileTap={{ scale: 0.95 }}
+              style={{ transformStyle: 'preserve-3d' }}
             >
               <span>Explore My Work</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
@@ -216,9 +224,17 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
 
             <motion.button
               onClick={() => scrollToSection('contact')}
-              className="w-full sm:w-auto min-w-[200px] px-6 sm:px-8 py-3 sm:py-4 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-xl font-semibold text-sm sm:text-base md:text-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300"
-              whileHover={{ scale: 1.05, y: -2 }}
+              className="w-full sm:w-auto min-w-[200px] px-6 sm:px-8 py-3 sm:py-4 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-xl font-semibold text-sm sm:text-base md:text-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300 hover-3d"
+              whileHover={{
+                scale: 1.05,
+                y: -6,
+                rotateX: -5,
+                rotateY: -2,
+                z: 30,
+                boxShadow: "0 25px 50px rgba(0, 0, 0, 0.1)"
+              }}
               whileTap={{ scale: 0.95 }}
+              style={{ transformStyle: 'preserve-3d' }}
             >
               Get In Touch
             </motion.button>
