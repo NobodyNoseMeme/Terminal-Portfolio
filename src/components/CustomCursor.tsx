@@ -134,22 +134,10 @@ const CustomCursor: React.FC = () => {
         }}
       />
 
-      {/* Enhanced cursor trails with better performance */}
+      {/* Simplified cursor trails */}
       {trails.map((trail) => (
-        <motion.div
+        <div
           key={trail.id}
-          initial={{
-            opacity: trail.opacity,
-            scale: 1,
-          }}
-          animate={{
-            opacity: 0,
-            scale: 0.2,
-          }}
-          transition={{
-            duration: 0.4,
-            ease: "easeOut",
-          }}
           style={{
             position: 'fixed',
             left: trail.x - 2,
@@ -160,30 +148,26 @@ const CustomCursor: React.FC = () => {
             borderRadius: '50%',
             pointerEvents: 'none',
             zIndex: 99998,
+            animation: 'fadeOut 0.3s ease-out forwards',
           }}
         />
       ))}
 
-      {/* Hover effect ring */}
+      {/* Simple hover effect */}
       {isHovering && (
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1.8, opacity: 0.4 }}
-          exit={{ scale: 0, opacity: 0 }}
+        <div
           style={{
             position: 'fixed',
-            left: mousePosition.x - 16,
-            top: mousePosition.y - 16,
-            width: '32px',
-            height: '32px',
+            left: mousePosition.x - 14,
+            top: mousePosition.y - 14,
+            width: '28px',
+            height: '28px',
             border: '2px solid #f59e0b',
-            borderRadius: '4px',
+            borderRadius: '6px',
             pointerEvents: 'none',
             zIndex: 99997,
-          }}
-          transition={{
-            duration: 0.2,
-            ease: "easeOut"
+            opacity: 0.6,
+            transition: 'all 0.1s ease-out',
           }}
         />
       )}
