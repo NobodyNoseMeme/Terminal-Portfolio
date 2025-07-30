@@ -48,10 +48,11 @@ const Navbar: React.FC<NavbarProps> = ({ onTerminalToggle }) => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offsetTop = element.offsetTop - 80;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
+      // Use optimized smooth scrolling
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest'
       });
     }
     setIsOpen(false);
