@@ -3,19 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Smooth theme transitions */
-* {
-  transition-property: background-color, border-color, color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
-}
-
-/* Exclude specific elements from theme transition */
-.no-theme-transition,
-.no-theme-transition * {
-  transition-property: none !important;
-}
-
 /* Enhanced smooth scrolling and performance optimizations */
 html {
   scroll-behavior: smooth;
@@ -146,17 +133,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Optimize cursor performance when terminal is open */
-body[data-terminal-open] {
-  cursor: auto;
-}
-
-body[data-terminal-open] .cursor,
-body[data-terminal-open] .cursor-trail {
-  pointer-events: none;
-  will-change: auto;
-}
-
 /* Enhanced scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
@@ -213,13 +189,8 @@ body[data-terminal-open] .cursor-trail {
 
 /* Smooth transition optimizations */
 .smooth-transform {
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
-}
-
-/* Theme transition optimization */
-.theme-transition {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
 /* Enhanced smooth scrolling */

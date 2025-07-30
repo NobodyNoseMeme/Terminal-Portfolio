@@ -245,9 +245,6 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
-      
-      // Add performance hint for cursor optimization
-      document.body.setAttribute('data-terminal-open', 'true');
 
       if (inputRef.current && !isMinimized) {
         // Small delay to ensure proper focus
@@ -260,9 +257,6 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
       document.body.style.overflow = '';
       document.body.style.position = '';
       document.body.style.width = '';
-      
-      // Remove performance hint
-      document.body.removeAttribute('data-terminal-open');
     }
 
     // Handle escape key to close terminal

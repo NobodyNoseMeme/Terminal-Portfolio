@@ -29,11 +29,8 @@ const CustomCursor: React.FC = () => {
     const updatePosition = (e: MouseEvent) => {
       const now = performance.now();
 
-      // Check if terminal is open and reduce update frequency
-      const isTerminalOpen = document.querySelector('[data-terminal-overlay]') !== null;
-      const throttleTime = isTerminalOpen ? 32 : 16; // 30fps when terminal open, 60fps otherwise
-      
-      if (now - lastTime >= throttleTime) {
+      // Throttle to 60fps for better performance
+      if (now - lastTime >= 16) {
         positionRef.current.x = e.clientX;
         positionRef.current.y = e.clientY;
 
@@ -51,22 +48,10 @@ const CustomCursor: React.FC = () => {
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
 
-      // Skip processing if target is inside terminal to prevent lag - more aggressive check
+      // Skip processing if target is inside terminal to prevent lag
       const isInsideTerminal = target.closest('[data-terminal-overlay]');
       if (isInsideTerminal) {
-        // Hide cursor effects when over terminal
-        if (cursorRef.current) {
-          cursorRef.current.style.opacity = '0.3';
-        }
-        if (hoverRingRef.current) {
-          hoverRingRef.current.style.opacity = '0';
-        }
         return;
-      } else {
-        // Restore cursor effects when not over terminal
-        if (cursorRef.current) {
-          cursorRef.current.style.opacity = '1';
-        }
       }
 
       // Enhanced button detection with better targeting
@@ -149,7 +134,7 @@ const CustomCursor: React.FC = () => {
           pointerEvents: 'none',
           zIndex: 99999,
           mixBlendMode: 'difference',
-          transition: 'all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          transition: 'all 0.06s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
           willChange: 'transform',
           contain: 'layout style paint',
         }}
@@ -169,7 +154,7 @@ const CustomCursor: React.FC = () => {
           pointerEvents: 'none',
           zIndex: 99997,
           opacity: '0',
-          transition: 'all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          transition: 'all 0.06s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
           willChange: 'transform',
           contain: 'layout style paint',
           boxShadow: '0 0 15px rgba(245, 158, 11, 0.3)',
