@@ -156,14 +156,18 @@ const Navbar: React.FC<NavbarProps> = ({ onTerminalToggle }) => {
               {/* Terminal Button */}
               <motion.button
                 onClick={onTerminalToggle}
-                className="relative p-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg group overflow-hidden"
+                className="relative p-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg group overflow-hidden hover-3d-nav"
                 whileHover={{
                   scale: 1.1,
-                  boxShadow: "0 8px 25px rgba(34, 197, 94, 0.4)",
-                  y: -2
+                  rotateX: -8,
+                  rotateY: 5,
+                  z: 25,
+                  boxShadow: "0 15px 35px rgba(34, 197, 94, 0.5)",
+                  y: -4
                 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                style={{ transformStyle: 'preserve-3d' }}
               >
                 <Terminal size={18} />
                 <motion.div
@@ -179,15 +183,18 @@ const Navbar: React.FC<NavbarProps> = ({ onTerminalToggle }) => {
 
               <motion.button
                 onClick={toggleTheme}
-                className="p-3 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 shadow-lg border border-gray-200/50 dark:border-gray-600/50"
+                className="p-3 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 shadow-lg border border-gray-200/50 dark:border-gray-600/50 hover-3d-nav"
                 whileHover={{
                   scale: 1.1,
                   rotate: 180,
-                  y: -2,
-                  boxShadow: "0 8px 25px rgba(0, 0, 0, 0.1)"
+                  rotateX: -8,
+                  z: 25,
+                  y: -4,
+                  boxShadow: "0 15px 35px rgba(0, 0, 0, 0.15)"
                 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                style={{ transformStyle: 'preserve-3d' }}
               >
                 {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
               </motion.button>
