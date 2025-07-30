@@ -40,6 +40,13 @@ const CustomCursor: React.FC = () => {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
+
+      // Skip processing if target is inside terminal to prevent lag
+      const isInsideTerminal = target.closest('[data-terminal-overlay]');
+      if (isInsideTerminal) {
+        return;
+      }
+
       const isClickable = target.tagName === 'BUTTON' ||
                          target.tagName === 'A' ||
                          target.role === 'button' ||
