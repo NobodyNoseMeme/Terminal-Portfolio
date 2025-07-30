@@ -147,30 +147,23 @@ body {
   transform: rotateY(180deg);
 }
 
-/* Enhanced 3D hover effects */
+/* Simplified hover effects for better performance */
 .hover-3d {
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform-style: preserve-3d;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .hover-3d:hover {
-  transform: perspective(1000px) rotateX(-10deg) rotateY(5deg) translateZ(50px);
-  box-shadow:
-    0 25px 50px -12px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .hover-3d-nav {
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform-style: preserve-3d;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .hover-3d-nav:hover {
-  transform: perspective(500px) rotateX(-5deg) translateZ(20px);
-  box-shadow:
-    0 15px 30px -10px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Smooth transition optimizations */
