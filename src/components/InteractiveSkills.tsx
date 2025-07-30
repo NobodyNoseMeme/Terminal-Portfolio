@@ -175,7 +175,7 @@ const InteractiveSkills: React.FC = () => {
                     <div className="space-y-3 mb-6">
                       {skillCategory.skills.map((skill, skillIndex) => (
                         <motion.div
-                          key={skill}
+                          key={skill.name}
                           initial={{ opacity: 0, x: -20 }}
                           animate={isInView ? { opacity: 1, x: 0 } : {}}
                           transition={{ duration: 0.5, delay: (index * 0.1) + (skillIndex * 0.1) }}
@@ -185,7 +185,7 @@ const InteractiveSkills: React.FC = () => {
                             className={`w-2 h-2 rounded-full bg-gradient-to-r ${skillCategory.color} mr-3`}
                           />
                           <span className="text-gray-700 dark:text-gray-300 font-medium">
-                            {skill}
+                            {skill.name}
                           </span>
                         </motion.div>
                       ))}
