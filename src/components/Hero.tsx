@@ -251,9 +251,17 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
               href="https://www.linkedin.com/in/abdullah-uzair-2a18b9278/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 sm:p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-blue-600 hover:text-blue-700"
-              whileHover={{ scale: 1.1, y: -3 }}
+              className="p-2 sm:p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-blue-600 hover:text-blue-700 hover-3d"
+              whileHover={{
+                scale: 1.1,
+                y: -6,
+                rotateX: -8,
+                rotateY: 5,
+                z: 20,
+                boxShadow: "0 20px 40px rgba(59, 130, 246, 0.2)"
+              }}
               whileTap={{ scale: 0.9 }}
+              style={{ transformStyle: 'preserve-3d' }}
             >
               <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
             </motion.a>
@@ -262,18 +270,34 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
               href="https://github.com/mabdullahuzair/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 sm:p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100"
-              whileHover={{ scale: 1.1, y: -3 }}
+              className="p-2 sm:p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover-3d"
+              whileHover={{
+                scale: 1.1,
+                y: -6,
+                rotateX: -8,
+                rotateY: 0,
+                z: 20,
+                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.15)"
+              }}
               whileTap={{ scale: 0.9 }}
+              style={{ transformStyle: 'preserve-3d' }}
             >
               <Github className="w-5 h-5 sm:w-6 sm:h-6" />
             </motion.a>
 
             <motion.a
               href="mailto:abdullahuzair860@gmail.com"
-              className="p-2 sm:p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-red-600 hover:text-red-700"
-              whileHover={{ scale: 1.1, y: -3 }}
+              className="p-2 sm:p-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-red-600 hover:text-red-700 hover-3d"
+              whileHover={{
+                scale: 1.1,
+                y: -6,
+                rotateX: -8,
+                rotateY: -5,
+                z: 20,
+                boxShadow: "0 20px 40px rgba(239, 68, 68, 0.2)"
+              }}
               whileTap={{ scale: 0.9 }}
+              style={{ transformStyle: 'preserve-3d' }}
             >
               <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
             </motion.a>
