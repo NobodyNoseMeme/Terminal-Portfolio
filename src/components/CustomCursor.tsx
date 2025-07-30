@@ -113,32 +113,24 @@ const CustomCursor: React.FC = () => {
 
   return (
     <>
-      {/* Main cursor with enhanced visibility and smooth animation */}
-      <motion.div
+      {/* Main cursor with simplified, responsive design */}
+      <div
         className="cursor"
         style={{
           position: 'fixed',
-          left: mousePosition.x - 10,
-          top: mousePosition.y - 10,
-          width: isHovering ? '28px' : '18px',
-          height: isHovering ? '28px' : '18px',
+          left: mousePosition.x - 9,
+          top: mousePosition.y - 9,
+          width: isHovering ? '24px' : '18px',
+          height: isHovering ? '24px' : '18px',
           background: isHovering
             ? 'linear-gradient(45deg, #f59e0b, #ef4444)'
             : 'linear-gradient(45deg, #3b82f6, #8b5cf6)',
-          borderRadius: isHovering ? '4px' : '50%',
+          borderRadius: isHovering ? '6px' : '50%',
           pointerEvents: 'none',
           zIndex: 99999,
           mixBlendMode: 'difference',
-          transition: 'all 0.15s ease',
-        }}
-        animate={{
-          scale: isHovering ? [1, 1.2, 1] : [1, 1.05, 1],
-          rotate: isHovering ? [0, 45, 0] : 0,
-        }}
-        transition={{
-          duration: isHovering ? 0.4 : 0.8,
-          repeat: Infinity,
-          ease: "easeInOut"
+          transition: 'all 0.1s ease-out',
+          transform: isHovering ? 'rotate(45deg)' : 'rotate(0deg)',
         }}
       />
 
