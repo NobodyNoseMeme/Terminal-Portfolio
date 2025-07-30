@@ -104,18 +104,27 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
               transition={{ delay: 0.5, duration: 0.8 }}
             >
               Hi, I'm{' '}
-              <span className="font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              <motion.span
+                className="font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent hover-3d cursor-pointer"
+                style={{ fontFamily: "'Orbitron', monospace" }}
+                whileHover={{
+                  scale: 1.05,
+                  textShadow: "0 0 20px rgba(59, 130, 246, 0.5)"
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
                 {text}
                 {showCursor && (
                   <motion.span
                     animate={{ opacity: [0, 1, 0] }}
                     transition={{ duration: 1.2, repeat: Infinity }}
                     className="text-blue-500"
+                    style={{ fontFamily: "'Orbitron', monospace" }}
                   >
                     |
                   </motion.span>
                 )}
-              </span>
+              </motion.span>
             </motion.h1>
 
             <motion.p
