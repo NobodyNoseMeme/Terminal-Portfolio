@@ -192,8 +192,11 @@ const InteractiveSkills: React.FC = () => {
                     </div>
 
                     {/* Click to flip indicator */}
-                    <div className="absolute bottom-4 right-4 text-gray-400 dark:text-gray-500">
-                      <RotateCcw className="w-4 h-4" />
+                    <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 text-center">
+                      <div className="flex items-center justify-center space-x-1 text-gray-400 dark:text-gray-500 text-xs">
+                        <RotateCcw className="w-3 h-3" />
+                        <span>Click to flip for details</span>
+                      </div>
                     </div>
                   </div>
 
