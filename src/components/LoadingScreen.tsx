@@ -37,261 +37,108 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 1 }}
-        exit={{ opacity: 0, scale: 1.1 }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 overflow-hidden"
+        exit={{ opacity: 0, scale: 1.05 }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+        className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 overflow-hidden"
       >
-        {/* Animated Background */}
+        {/* Minimal animated background */}
         <div className="absolute inset-0">
-          {/* Gradient waves */}
           <motion.div
-            className="absolute inset-0 opacity-30"
+            className="absolute inset-0 opacity-20"
             animate={{
               background: [
-                'radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%)',
-                'radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%)',
-                'radial-gradient(circle at 40% 80%, rgba(119, 198, 255, 0.3) 0%, transparent 50%)',
-                'radial-gradient(circle at 60% 20%, rgba(198, 255, 119, 0.3) 0%, transparent 50%)',
+                'radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 70%)',
+                'radial-gradient(circle at 70% 30%, rgba(139, 92, 246, 0.3) 0%, transparent 70%)',
+                'radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 70%)',
               ]
             }}
-            transition={{ duration: 8, repeat: Infinity, repeatType: 'reverse' }}
-          />
-
-          {/* Floating particles */}
-          {particles.map((particle) => (
-            <motion.div
-              key={particle.id}
-              className="absolute bg-white rounded-full opacity-20"
-              style={{
-                left: `${particle.x}%`,
-                top: `${particle.y}%`,
-                width: particle.size,
-                height: particle.size,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                x: [0, Math.random() * 20 - 10, 0],
-                opacity: [0.2, 0.8, 0.2],
-                scale: [1, 1.5, 1],
-              }}
-              transition={{
-                duration: particle.duration,
-                repeat: Infinity,
-                repeatType: 'reverse',
-                ease: 'easeInOut',
-              }}
-            />
-          ))}
-
-          {/* Geometric shapes */}
-          <motion.div
-            className="absolute top-20 left-20 w-8 h-8 border-2 border-white/20"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-          />
-          <motion.div
-            className="absolute bottom-20 right-20 w-6 h-6 bg-white/10 rounded-full"
-            animate={{ scale: [1, 1.5, 1], opacity: [0.1, 0.3, 0.1] }}
-            transition={{ duration: 3, repeat: Infinity }}
-          />
-          <motion.div
-            className="absolute top-1/2 right-10 w-4 h-4 bg-gradient-to-r from-blue-400 to-purple-400 transform rotate-45"
-            animate={{ y: [0, -20, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            transition={{ duration: 4, repeat: Infinity, repeatType: 'reverse' }}
           />
         </div>
 
         <div className="relative z-10 text-center max-w-md mx-auto px-6">
           {!showFinalAnimation ? (
             <>
-              {/* Logo with enhanced animation */}
+              {/* Simplified Logo */}
               <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ 
-                  duration: 1.2, 
-                  type: "spring", 
-                  stiffness: 150,
-                  damping: 12
-                }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.8, type: "spring", stiffness: 200 }}
                 className="mb-8"
               >
-                <div className="relative">
-                  <motion.div
-                    className="w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-1 shadow-2xl"
-                    animate={{ 
-                      rotate: [0, 360],
-                      scale: [1, 1.05, 1]
-                    }}
-                    transition={{ 
-                      rotate: { duration: 8, repeat: Infinity, ease: 'linear' },
-                      scale: { duration: 2, repeat: Infinity }
-                    }}
-                  >
-                    <div className="w-full h-full rounded-full bg-white dark:bg-gray-900 flex items-center justify-center text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                      AU
-                    </div>
-                  </motion.div>
-                  
-                  {/* Orbiting elements */}
-                  <motion.div
-                    className="absolute inset-0"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
-                  >
-                    <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full" />
-                  </motion.div>
-                  <motion.div
-                    className="absolute inset-0"
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-                  >
-                    <div className="absolute bottom-0 right-0 w-2 h-2 bg-gradient-to-r from-green-400 to-blue-400 rounded-full" />
-                  </motion.div>
-                </div>
+                <motion.div
+                  className="w-20 h-20 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 p-0.5 shadow-2xl"
+                  animate={{
+                    rotate: [0, 360],
+                  }}
+                  transition={{
+                    rotate: { duration: 3, repeat: Infinity, ease: 'linear' },
+                  }}
+                >
+                  <div className="w-full h-full rounded-full bg-white dark:bg-slate-900 flex items-center justify-center text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                    AU
+                  </div>
+                </motion.div>
               </motion.div>
 
-              {/* Brand Name with typewriter effect */}
+              {/* Simplified text */}
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.8 }}
-                className="text-4xl font-bold text-white mb-2 tracking-wide"
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="text-3xl font-bold text-white mb-6 tracking-wide"
               >
                 Abdullah Uzair
               </motion.h1>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 0.8 }}
-                className="text-lg text-purple-200 mb-12 font-light"
-              >
-                Software Engineer & Creative Developer
-              </motion.p>
-
-              {/* Loading Step with Icon */}
-              <motion.div
-                key={currentStep}
-                initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="mb-8"
-              >
-                <div className="flex items-center justify-center space-x-3 mb-4">
+              {/* Simple progress bar */}
+              <div className="w-64 mx-auto mb-4">
+                <div className="w-full bg-white/20 rounded-full h-2 overflow-hidden backdrop-blur-sm">
                   <motion.div
-                    className={`p-3 rounded-full bg-gradient-to-r ${loadingSteps[currentStep]?.color} text-white shadow-lg`}
-                    animate={{ 
-                      scale: [1, 1.1, 1],
-                      rotate: [0, 5, -5, 0]
-                    }}
-                    transition={{ 
-                      duration: 1,
-                      repeat: Infinity,
-                      repeatType: 'reverse'
-                    }}
-                  >
-                    {loadingSteps[currentStep]?.icon}
-                  </motion.div>
+                    className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progress}%` }}
+                    transition={{ duration: 0.1, ease: "easeOut" }}
+                  />
                 </div>
-                <motion.p
-                  className="text-white text-xl font-medium"
-                  animate={{ opacity: [0.7, 1, 0.7] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  {loadingSteps[currentStep]?.text}
-                </motion.p>
-              </motion.div>
-
-              {/* Enhanced Progress Bar */}
-              <div className="w-80 mx-auto mb-6">
-                <div className="relative">
-                  <div className="w-full bg-white/20 rounded-full h-3 overflow-hidden backdrop-blur-sm">
-                    <motion.div
-                      className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full relative"
-                      initial={{ width: 0 }}
-                      animate={{ width: `${progress}%` }}
-                      transition={{ duration: 0.1, ease: "easeOut" }}
-                    >
-                      <motion.div
-                        className="absolute inset-0 bg-white/30 rounded-full"
-                        animate={{ x: [-100, 400] }}
-                        transition={{ 
-                          duration: 2, 
-                          repeat: Infinity, 
-                          ease: 'linear' 
-                        }}
-                      />
-                    </motion.div>
-                  </div>
-                  <div className="flex justify-between mt-2 text-sm text-white/80">
-                    <span>0%</span>
-                    <motion.span
-                      key={Math.round(progress)}
-                      initial={{ scale: 1.2, color: '#ffffff' }}
-                      animate={{ scale: 1, color: '#e5e7eb' }}
-                      className="font-bold"
-                    >
-                      {Math.round(progress)}%
-                    </motion.span>
-                    <span>100%</span>
-                  </div>
+                <div className="flex justify-center mt-3">
+                  <motion.span
+                    key={Math.round(progress)}
+                    initial={{ scale: 1.1 }}
+                    animate={{ scale: 1 }}
+                    className="text-white/80 text-sm font-medium"
+                  >
+                    {Math.round(progress)}%
+                  </motion.span>
                 </div>
               </div>
-
-              {/* Fun Fact */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5 }}
-                className="text-center"
-              >
-                <motion.p
-                  key={currentStep}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-purple-200 text-sm font-light"
-                >
-                  {funFacts[currentStep % funFacts.length]}
-                </motion.p>
-              </motion.div>
             </>
           ) : (
-            /* Final Animation */
+            /* Simple final animation */
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 200, damping: 10 }}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
               className="text-center"
             >
               <motion.div
-                animate={{ 
-                  scale: [1, 1.2, 1],
-                  rotate: [0, 360]
+                animate={{
+                  scale: [1, 1.1, 1],
                 }}
-                transition={{ 
-                  scale: { duration: 0.6, repeat: 2 },
-                  rotate: { duration: 1.2 }
+                transition={{
+                  duration: 0.6,
                 }}
-                className="text-6xl mb-4"
+                className="text-4xl mb-4"
               >
-                🚀
+                ✨
               </motion.div>
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-3xl font-bold text-white mb-2"
+                className="text-2xl font-bold text-white"
               >
                 Welcome!
               </motion.h2>
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="text-purple-200"
-              >
-                Let's build something amazing together
-              </motion.p>
             </motion.div>
           )}
         </div>
