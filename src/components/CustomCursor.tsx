@@ -49,15 +49,15 @@ const CustomCursor: React.FC = () => {
     setTrails([]);
   }, []);
 
-  // Handle hover states
+  // Handle hover states with better performance
   const handleMouseOver = useCallback((e: MouseEvent) => {
     const target = e.target as HTMLElement;
-    const isClickable = target.tagName === 'BUTTON' || 
-                       target.tagName === 'A' || 
+    const isClickable = target.tagName === 'BUTTON' ||
+                       target.tagName === 'A' ||
                        target.role === 'button' ||
-                       target.style.cursor === 'pointer' ||
                        target.classList.contains('cursor-pointer') ||
-                       getComputedStyle(target).cursor === 'pointer';
+                       target.closest('button') !== null ||
+                       target.closest('a') !== null;
     setIsHovering(isClickable);
   }, []);
 
