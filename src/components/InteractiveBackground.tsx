@@ -5,30 +5,13 @@ interface Particle {
   id: number;
   x: number;
   y: number;
-  baseX: number;
-  baseY: number;
   size: number;
   color: string;
   opacity: number;
-  type: 'circle' | 'square' | 'triangle' | 'star';
-  speed: number;
-}
-
-interface FloatingShape {
-  id: number;
-  x: number;
-  y: number;
-  size: number;
-  rotation: number;
-  type: 'geometric' | 'orb' | 'line';
-  color: string;
-  duration: number;
 }
 
 const InteractiveBackground: React.FC = () => {
   const [particles, setParticles] = useState<Particle[]>([]);
-  const [floatingShapes, setFloatingShapes] = useState<FloatingShape[]>([]);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Initialize particles and floating shapes
