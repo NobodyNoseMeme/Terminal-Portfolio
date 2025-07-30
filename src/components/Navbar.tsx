@@ -171,14 +171,10 @@ const Navbar: React.FC<NavbarProps> = ({ onTerminalToggle }) => {
                 whileHover={{
                   scale: 1.1,
                   rotate: 180,
-                  rotateX: -8,
-                  z: 25,
-                  y: -4,
-                  boxShadow: "0 15px 35px rgba(0, 0, 0, 0.15)"
+                  y: -2
                 }}
                 whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                style={{ transformStyle: 'preserve-3d' }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
               </motion.button>
