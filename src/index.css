@@ -10,6 +10,19 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Ultra-smooth scrolling with CSS optimization */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Optimized scroll timing */
+* {
+  scroll-behavior: smooth !important;
+  scroll-margin-top: 80px;
+}
+
 * {
   margin: 0;
   padding: 0;
