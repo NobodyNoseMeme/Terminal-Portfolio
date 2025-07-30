@@ -100,6 +100,7 @@ const InteractiveBackground: React.FC = () => {
     // Reinitialize on window resize
     const handleResize = () => {
       initParticles();
+      initFloatingShapes();
     };
 
     window.addEventListener('resize', handleResize);
