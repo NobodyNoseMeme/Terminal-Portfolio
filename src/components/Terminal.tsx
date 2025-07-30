@@ -45,7 +45,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
     ],
     skills: [
       "💻 Abdullah's Tech Arsenal:\n\n🎨 Frontend Magic:\n• HTML5, CSS3, JavaScript (Expert)\n• Bootstrap, Tailwind CSS (Advanced)\n• Responsive Design (Master)\n\n⚙️ Backend Power:\n• PHP, Node.js, Express.js\n• RESTful APIs\n\n🗄️ Database Mastery:\n• MySQL, MongoDB\n\n🔧 Tools & More:\n• Git & GitHub, VS Code, Postman\n• C, C++, Python\n• Machine Learning, SEO\n• Agile Methodology\n\nAlways learning, always growing! 📈",
-      "🛠️ Technical Expertise Breakdown:\n\n📊 Proficiency Levels:\n• Web Development: 95% ⭐⭐⭐⭐⭐\n• JavaScript: 90% ⭐⭐⭐⭐��\n• PHP/Backend: 88% ⭐⭐⭐⭐\n• Database Design: 85% ��⭐⭐⭐\n• Python/ML: 80% ⭐⭐⭐⭐\n• SEO & Optimization: 88% ⭐⭐⭐⭐\n\n🎯 Currently exploring: AI/ML integration in web apps!"
+      "🛠️ Technical Expertise Breakdown:\n\n📊 Proficiency Levels:\n• Web Development: 95% ⭐⭐⭐⭐⭐\n• JavaScript: 90% ⭐⭐⭐⭐��\n• PHP/Backend: 88% ⭐⭐⭐⭐\n• Database Design: 85% ⭐⭐⭐⭐\n• Python/ML: 80% ⭐⭐⭐⭐\n• SEO & Optimization: 88% ⭐⭐⭐⭐\n\n🎯 Currently exploring: AI/ML integration in web apps!"
     ],
     projects: [
       "🚀 Abdullah's Project Showcase:\n\n⭐ Featured Projects:\n• MacroMate - AI-powered health & fitness tracker (Final Year Project)\n• XRevStudio.com - Creative agency portfolio with stunning animations\n• ObecheInterior.com - Elegant interior design showcase\n• LevelUpSol.com.pk - Professional corporate website\n• CricketX.net - Enhanced sports platform\n\n💡 Each project represents a unique challenge solved with creativity and cutting-edge tech!",
@@ -327,7 +327,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         >
           <div className="w-full max-w-5xl max-h-[95vh] bg-gradient-to-b from-gray-900 to-black rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden border border-gray-600/50 backdrop-blur-sm pointer-events-auto">
             {/* Terminal Header */}
-            <div className="flex items-center justify-between px-6 py-4 bg-gray-800 dark:bg-gray-900 border-b border-gray-700">
+            <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-gray-800 to-gray-900 border-b border-gray-600/50">
               <div className="flex items-center space-x-4">
                 <div className="flex space-x-2">
                   <motion.div
