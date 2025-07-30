@@ -251,63 +251,112 @@ const InteractiveBackground: React.FC = () => {
   };
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className="fixed inset-0 pointer-events-none z-0"
       style={{ overflow: 'hidden' }}
     >
+      {/* Enhanced interactive particles */}
       {particles.map(particle => (
         <motion.div
           key={particle.id}
-          className="absolute rounded-full"
+          className="absolute"
           style={{
             left: particle.x,
             top: particle.y,
-            width: particle.size,
-            height: particle.size,
-            backgroundColor: particle.color,
-            opacity: particle.opacity,
           }}
           animate={{
             x: particle.x - particle.baseX,
             y: particle.y - particle.baseY,
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 150,
-            damping: 20,
-            mass: 0.5,
-          }}
-        />
-      ))}
-      
-      {/* Add some subtle floating shapes */}
-      {[...Array(8)].map((_, i) => (
-        <motion.div
-          key={`shape-${i}`}
-          className="absolute"
-          style={{
-            left: Math.random() * window.innerWidth,
-            top: Math.random() * window.innerHeight,
-          }}
-          animate={{
-            y: [0, -20, 0],
-            x: [0, Math.random() * 10 - 5, 0],
             rotate: [0, 360],
           }}
           transition={{
-            duration: Math.random() * 10 + 15,
-            repeat: Infinity,
-            ease: "linear",
+            x: { type: "spring", stiffness: 150, damping: 20, mass: 0.5 },
+            y: { type: "spring", stiffness: 150, damping: 20, mass: 0.5 },
+            rotate: { duration: 10 + particle.speed * 10, repeat: Infinity, ease: "linear" },
           }}
         >
-          <div
-            className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400/40 to-purple-400/40"
-            style={{
-              transform: `scale(${Math.random() * 2 + 1})`,
-            }}
-          />
+          {renderParticleShape(particle)}
         </motion.div>
+      ))}
+
+      {/* Enhanced floating shapes */}
+      {floatingShapes.map(shape => (
+        <motion.div
+          key={`floating-${shape.id}`}
+          className="absolute"
+          style={{
+            left: shape.x,
+            top: shape.y,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            x: [0, Math.sin(shape.rotation) * 20, 0],
+            rotate: [shape.rotation, shape.rotation + 360],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: shape.duration,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          {renderFloatingShape(shape)}
+        </motion.div>
+      ))}
+
+      {/* Additional cosmic dust particles */}
+      {[...Array(20)].map((_, i) => (
+        <motion.div
+          key={`dust-${i}`}
+          className="absolute w-1 h-1 rounded-full"
+          style={{
+            left: Math.random() * window.innerWidth,
+            top: Math.random() * window.innerHeight,
+            backgroundColor: ['#3b82f6', '#8b5cf6', '#06b6d4'][Math.floor(Math.random() * 3)],
+            opacity: Math.random() * 0.3 + 0.1,
+          }}
+          animate={{
+            y: [0, -Math.random() * 100 - 50, 0],
+            x: [0, Math.random() * 40 - 20, 0],
+            opacity: [0.1, 0.4, 0.1],
+            scale: [0.5, 1.5, 0.5],
+          }}
+          transition={{
+            duration: Math.random() * 15 + 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: Math.random() * 10,
+          }}
+        />
+      ))}
+
+      {/* Ambient light orbs */}
+      {[...Array(5)].map((_, i) => (
+        <motion.div
+          key={`orb-${i}`}
+          className="absolute rounded-full"
+          style={{
+            left: Math.random() * window.innerWidth,
+            top: Math.random() * window.innerHeight,
+            width: Math.random() * 100 + 50,
+            height: Math.random() * 100 + 50,
+            background: `radial-gradient(circle, ${
+              ['rgba(59, 130, 246, 0.05)', 'rgba(139, 92, 246, 0.05)', 'rgba(6, 182, 212, 0.05)'][i % 3]
+            }, transparent)`,
+            filter: 'blur(20px)',
+          }}
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: Math.random() * 8 + 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: Math.random() * 5,
+          }}
+        />
       ))}
     </div>
   );
