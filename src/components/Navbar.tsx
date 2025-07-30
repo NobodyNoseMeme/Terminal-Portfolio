@@ -70,32 +70,40 @@ const Navbar: React.FC<NavbarProps> = ({ onTerminalToggle }) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3">
-          <div className="flex items-center space-x-3">
+          <motion.div
+            className="flex items-center space-x-3 cursor-pointer"
+            onClick={() => scrollToSection('home')}
+            whileHover={{ scale: 1.02 }}
+          >
             <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileHover={{ scale: 1.15, rotate: 360 }}
+              transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-lg">AU</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg border border-white/20">
+                <span className="text-white font-bold text-xl">AU</span>
               </div>
               <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl blur opacity-30"
-                animate={{ 
-                  scale: [1, 1.1, 1],
-                  opacity: [0.3, 0.6, 0.3]
+                className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-40"
+                animate={{
+                  scale: [1, 1.05, 1],
+                  opacity: [0.4, 0.7, 0.4]
                 }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={{ duration: 3, repeat: Infinity }}
               />
             </motion.div>
-            <div>
-              <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <div className="hidden sm:block">
+              <motion.div
+                className="text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent"
+                whileHover={{ scale: 1.05 }}
+              >
                 Abdullah Uzair
-              </div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 -mt-1">
-                Full-Stack Developer
+              </motion.div>
+              <div className="text-xs text-gray-600 dark:text-gray-400 font-medium -mt-1">
+                Software Engineer
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
