@@ -97,10 +97,24 @@ const About: React.FC = () => {
                   <div className="text-sm font-medium text-gray-600 dark:text-gray-400 text-center z-10">
                     Software Engineer
                   </div>
-                  <div className="flex items-center mt-2 z-10">
-                    <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                  <motion.div
+                    className="flex items-center mt-2 z-10 cursor-pointer"
+                    whileHover={{
+                      scale: 1.1,
+                      y: -2,
+                      background: "linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1))"
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  >
+                    <motion.div
+                      whileHover={{ rotate: [0, -10, 10, 0] }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                    </motion.div>
                     <span className="text-xs text-gray-500 dark:text-gray-400 ml-1">3.6 CGPA</span>
-                  </div>
+                  </motion.div>
                 </div>
               </motion.div>
             </div>
