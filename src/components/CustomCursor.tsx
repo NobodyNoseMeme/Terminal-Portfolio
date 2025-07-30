@@ -148,24 +148,24 @@ const CustomCursor: React.FC = () => {
       {trails.map((trail) => (
         <motion.div
           key={trail.id}
-          initial={{ 
+          initial={{
             opacity: trail.opacity,
             scale: 1,
           }}
-          animate={{ 
+          animate={{
             opacity: 0,
-            scale: 0.3,
+            scale: 0.2,
           }}
           transition={{
-            duration: 0.6,
-            ease: [0.25, 0.1, 0.25, 1], // Custom easing for smoother animation
+            duration: 0.4,
+            ease: "easeOut",
           }}
           style={{
             position: 'fixed',
-            left: trail.x - 3,
-            top: trail.y - 3,
-            width: '6px',
-            height: '6px',
+            left: trail.x - 2,
+            top: trail.y - 2,
+            width: '4px',
+            height: '4px',
             background: `rgba(59, 130, 246, ${trail.opacity})`,
             borderRadius: '50%',
             pointerEvents: 'none',
@@ -178,21 +178,21 @@ const CustomCursor: React.FC = () => {
       {isHovering && (
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 2, opacity: 0.3 }}
+          animate={{ scale: 1.8, opacity: 0.4 }}
           exit={{ scale: 0, opacity: 0 }}
           style={{
             position: 'fixed',
-            left: mousePosition.x - 20,
-            top: mousePosition.y - 20,
-            width: '40px',
-            height: '40px',
-            border: '2px solid #3b82f6',
-            borderRadius: '50%',
+            left: mousePosition.x - 16,
+            top: mousePosition.y - 16,
+            width: '32px',
+            height: '32px',
+            border: '2px solid #f59e0b',
+            borderRadius: '4px',
             pointerEvents: 'none',
             zIndex: 99997,
           }}
           transition={{
-            duration: 0.3,
+            duration: 0.2,
             ease: "easeOut"
           }}
         />
