@@ -52,7 +52,7 @@ const Hero: React.FC<HeroProps> = ({ onTerminalToggle }) => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/40 dark:from-slate-900 dark:via-slate-800/90 dark:to-slate-900 pt-16 sm:pt-20">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/40 dark:from-slate-900 dark:via-slate-800/90 dark:to-slate-900 pt-24 sm:pt-28 md:pt-32 lg:pt-36">
       {/* Minimalist Background Elements */}
       <div className="absolute inset-0">
         {/* Subtle gradient orbs */}
