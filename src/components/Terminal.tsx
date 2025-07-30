@@ -449,29 +449,29 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Input Area */}
-                <form onSubmit={handleSubmit} className="p-6 bg-gray-800 border-t border-gray-700">
-                  <div className="flex items-center space-x-4">
-                    <span className="text-emerald-400 font-mono">abdullah@portfolio:~$</span>
+                <form onSubmit={handleSubmit} className="p-4 sm:p-6 bg-gradient-to-r from-gray-800 to-gray-900 border-t border-gray-600/50">
+                  <div className="flex items-center space-x-2 sm:space-x-4">
+                    <span className="text-emerald-400 font-mono text-xs sm:text-sm">abdullah@portfolio:~$</span>
                     <input
                       ref={inputRef}
                       type="text"
                       value={currentInput}
                       onChange={(e) => setCurrentInput(e.target.value)}
                       onKeyDown={handleKeyDown}
-                      className="flex-1 bg-transparent text-white font-mono focus:outline-none placeholder-gray-500"
+                      className="flex-1 bg-transparent text-white font-mono focus:outline-none placeholder-gray-500 text-xs sm:text-sm"
                       placeholder="Type a command or ask me anything..."
                       autoComplete="off"
                     />
                     <motion.button
                       type="submit"
-                      whileHover={{ scale: 1.1 }}
+                      whileHover={{ scale: 1.1, color: "#60a5fa" }}
                       whileTap={{ scale: 0.9 }}
-                      className="p-2 text-blue-400 hover:text-blue-300 transition-colors"
+                      className="p-2 text-blue-400 hover:text-blue-300 transition-colors rounded-md hover:bg-blue-600/10"
                     >
-                      <Send className="w-4 h-4" />
+                      <Send className="w-3 h-3 sm:w-4 sm:h-4" />
                     </motion.button>
                   </div>
-                  <div className="text-xs text-gray-500 mt-2">
+                  <div className="text-xs text-gray-500 mt-2 hidden sm:block">
                     Press ESC to close • Use ↑/↓ for command history
                   </div>
                 </form>
