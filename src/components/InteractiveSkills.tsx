@@ -208,7 +208,7 @@ const InteractiveSkills: React.FC = () => {
           })}
         </motion.div>
 
-        {/* Collapse/Expand Controls */}
+        {/* Simple Skills Info */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -225,25 +225,10 @@ const InteractiveSkills: React.FC = () => {
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Fast Execution</span>
             </div>
           </div>
-          
-          <motion.button
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            className="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold shadow-lg transition-all duration-300 mx-auto"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {isCollapsed ? (
-              <>
-                <Plus className="w-5 h-5 mr-2" />
-                Expand Skills
-              </>
-            ) : (
-              <>
-                <Minus className="w-5 h-5 mr-2" />
-                Minimize Skills
-              </>
-            )}
-          </motion.button>
+
+          <p className="text-gray-600 dark:text-gray-400 text-sm">
+            Click on any skill card to see detailed information and proficiency level
+          </p>
         </motion.div>
       </div>
     </section>
