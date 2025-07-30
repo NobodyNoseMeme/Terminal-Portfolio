@@ -13,7 +13,14 @@ const InteractiveSkills: React.FC = () => {
       category: 'Frontend',
       icon: Code,
       color: 'from-blue-500 to-cyan-500',
-      skills: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap', 'Tailwind CSS', 'Responsive Design'],
+      skills: [
+        { name: 'HTML5', percentage: 98 },
+        { name: 'CSS3', percentage: 95 },
+        { name: 'JavaScript', percentage: 92 },
+        { name: 'Bootstrap', percentage: 90 },
+        { name: 'Tailwind CSS', percentage: 88 },
+        { name: 'Responsive Design', percentage: 94 }
+      ],
       level: 95,
       details: 'Crafting beautiful, responsive user interfaces with modern frameworks and clean, semantic code.'
     },
@@ -21,7 +28,12 @@ const InteractiveSkills: React.FC = () => {
       category: 'Backend',
       icon: Server,
       color: 'from-green-500 to-emerald-500',
-      skills: ['PHP', 'Node.js', 'Express.js', 'RESTful APIs'],
+      skills: [
+        { name: 'PHP', percentage: 92 },
+        { name: 'Node.js', percentage: 88 },
+        { name: 'Express.js', percentage: 85 },
+        { name: 'RESTful APIs', percentage: 90 }
+      ],
       level: 90,
       details: 'Building robust server-side applications with efficient APIs and scalable architecture.'
     },
@@ -29,7 +41,10 @@ const InteractiveSkills: React.FC = () => {
       category: 'Database',
       icon: Database,
       color: 'from-purple-500 to-violet-500',
-      skills: ['MySQL', 'MongoDB'],
+      skills: [
+        { name: 'MySQL', percentage: 88 },
+        { name: 'MongoDB', percentage: 82 }
+      ],
       level: 85,
       details: 'Designing efficient database schemas and optimizing queries for performance.'
     },
@@ -37,7 +52,12 @@ const InteractiveSkills: React.FC = () => {
       category: 'Programming',
       icon: Brain,
       color: 'from-pink-500 to-rose-500',
-      skills: ['C', 'C++', 'JavaScript', 'Python'],
+      skills: [
+        { name: 'C', percentage: 85 },
+        { name: 'C++', percentage: 88 },
+        { name: 'JavaScript', percentage: 92 },
+        { name: 'Python', percentage: 86 }
+      ],
       level: 88,
       details: 'Strong foundation in multiple programming languages with focus on clean, efficient code.'
     },
@@ -45,7 +65,12 @@ const InteractiveSkills: React.FC = () => {
       category: 'Tools & DevOps',
       icon: Globe,
       color: 'from-orange-500 to-red-500',
-      skills: ['Git & GitHub', 'VS Code', 'Postman', 'Version Control'],
+      skills: [
+        { name: 'Git & GitHub', percentage: 90 },
+        { name: 'VS Code', percentage: 95 },
+        { name: 'Postman', percentage: 85 },
+        { name: 'Version Control', percentage: 88 }
+      ],
       level: 85,
       details: 'Streamlining development workflow with modern tools and collaborative practices.'
     },
@@ -53,7 +78,12 @@ const InteractiveSkills: React.FC = () => {
       category: 'Specializations',
       icon: Zap,
       color: 'from-indigo-500 to-purple-500',
-      skills: ['Machine Learning', 'SEO & Optimization', 'Agile Methodology', 'Debugging & Testing'],
+      skills: [
+        { name: 'Machine Learning', percentage: 75 },
+        { name: 'SEO & Optimization', percentage: 82 },
+        { name: 'Agile Methodology', percentage: 85 },
+        { name: 'Debugging & Testing', percentage: 88 }
+      ],
       level: 80,
       details: 'Exploring cutting-edge technologies and implementing best practices in development.'
     }
