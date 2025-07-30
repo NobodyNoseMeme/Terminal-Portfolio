@@ -1,11 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Code, Database, Globe, Smartphone, Server, Palette, Brain, Zap, Minus, Plus } from 'lucide-react';
+import { Code, Database, Globe, Smartphone, Server, Palette, Brain, Zap, Minus, Plus, RotateCcw } from 'lucide-react';
 
 const InteractiveSkills: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.2 });
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
 
   const skills = [
     {
