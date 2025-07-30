@@ -308,6 +308,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         exit={{ opacity: 0 }}
         className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm"
         onClick={handleBackdropClick}
+        data-terminal-overlay
         style={{
           position: 'fixed',
           top: 0,
