@@ -27,7 +27,7 @@ function App() {
     setIsTerminalOpen(!isTerminalOpen);
   };
 
-  // Smooth scrolling for anchor links
+  // Enhanced smooth scrolling for anchor links
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLAnchorElement;
@@ -35,12 +35,23 @@ function App() {
         e.preventDefault();
         const element = document.querySelector(target.hash);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+          });
         }
       }
     };
 
+    // Optimize scroll performance
+    const optimizeScroll = () => {
+      document.documentElement.style.scrollBehavior = 'smooth';
+    };
+
     document.addEventListener('click', handleAnchorClick);
+    optimizeScroll();
+
     return () => document.removeEventListener('click', handleAnchorClick);
   }, []);
 
