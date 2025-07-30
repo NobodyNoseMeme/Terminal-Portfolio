@@ -30,15 +30,12 @@ html {
   box-sizing: border-box;
 }
 
-/* Hardware acceleration for smooth animations */
+/* Optimized hardware acceleration */
 .will-animate,
 [data-framer-motion] {
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  perspective: 1000;
+  will-change: transform;
 }
 
 body {
