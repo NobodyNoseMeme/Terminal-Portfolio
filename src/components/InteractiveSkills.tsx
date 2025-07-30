@@ -102,64 +102,107 @@ const InteractiveSkills: React.FC = () => {
         >
           {skills.map((skillCategory, index) => {
             const IconComponent = skillCategory.icon;
+            const isFlipped = flippedCards.has(index);
             return (
               <motion.div
                 key={skillCategory.category}
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="relative"
+                className="relative perspective-1000"
+                style={{ height: '320px' }}
               >
-                <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 h-full">
-                  {/* Header */}
-                  <div className="flex items-center mb-6">
-                    <motion.div
-                      className={`w-12 h-12 rounded-xl bg-gradient-to-r ${skillCategory.color} flex items-center justify-center`}
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <IconComponent className="w-6 h-6 text-white" />
-                    </motion.div>
-                    <div className="ml-4">
-                      <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">
-                        {skillCategory.category}
-                      </h3>
-                      <div className="flex items-center mt-1">
-                        <div className="w-20 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                          <motion.div
-                            className={`h-full bg-gradient-to-r ${skillCategory.color} rounded-full`}
-                            initial={{ width: 0 }}
-                            animate={isInView ? { width: `${skillCategory.level}%` } : { width: 0 }}
-                            transition={{ duration: 1.5, delay: index * 0.2 }}
-                          />
-                        </div>
-                        <span className="ml-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                          {skillCategory.level}%
-                        </span>
+                <motion.div
+                  className="relative w-full h-full cursor-pointer preserve-3d"
+                  animate={{ rotateY: isFlipped ? 180 : 0 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  onClick={() => handleCardFlip(index)}
+                  whileHover={{ scale: 1.02, y: -4 }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  {/* Front Face */}
+                  <div
+                    className="absolute inset-0 backface-hidden bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300"
+                    style={{ backfaceVisibility: 'hidden' }}
+                  >
+                    {/* Header */}
+                    <div className="flex items-center mb-6">
+                      <motion.div
+                        className={`w-12 h-12 rounded-xl bg-gradient-to-r ${skillCategory.color} flex items-center justify-center`}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <IconComponent className="w-6 h-6 text-white" />
+                      </motion.div>
+                      <div className="ml-4">
+                        <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">
+                          {skillCategory.category}
+                        </h3>
                       </div>
+                    </div>
+
+                    {/* Skills List */}
+                    <div className="space-y-3 mb-6">
+                      {skillCategory.skills.map((skill, skillIndex) => (
+                        <motion.div
+                          key={skill}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={isInView ? { opacity: 1, x: 0 } : {}}
+                          transition={{ duration: 0.5, delay: (index * 0.1) + (skillIndex * 0.1) }}
+                          className="flex items-center"
+                        >
+                          <div
+                            className={`w-2 h-2 rounded-full bg-gradient-to-r ${skillCategory.color} mr-3`}
+                          />
+                          <span className="text-gray-700 dark:text-gray-300 font-medium">
+                            {skill}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    {/* Click to flip indicator */}
+                    <div className="absolute bottom-4 right-4 text-gray-400 dark:text-gray-500">
+                      <RotateCcw className="w-4 h-4" />
                     </div>
                   </div>
 
-                  {/* Skills List */}
-                  <div className="space-y-3">
-                    {skillCategory.skills.map((skill, skillIndex) => (
-                      <motion.div
-                        key={skill}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.5, delay: (index * 0.1) + (skillIndex * 0.1) }}
-                        className="flex items-center"
-                      >
-                        <div
-                          className={`w-2 h-2 rounded-full bg-gradient-to-r ${skillCategory.color} mr-3`}
+                  {/* Back Face */}
+                  <div
+                    className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col justify-center text-center"
+                    style={{
+                      backfaceVisibility: 'hidden',
+                      transform: 'rotateY(180deg)'
+                    }}
+                  >
+                    <motion.div
+                      className={`w-16 h-16 rounded-full bg-gradient-to-r ${skillCategory.color} flex items-center justify-center mx-auto mb-4`}
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      <IconComponent className="w-8 h-8 text-white" />
+                    </motion.div>
+
+                    <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
+                      {skillCategory.level}%
+                    </h3>
+
+                    <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
+                      {skillCategory.details}
+                    </p>
+
+                    <div className="flex items-center justify-center">
+                      <div className="w-24 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <motion.div
+                          className={`h-full bg-gradient-to-r ${skillCategory.color} rounded-full`}
+                          initial={{ width: 0 }}
+                          animate={{ width: `${skillCategory.level}%` }}
+                          transition={{ duration: 1.5, delay: 0.2 }}
                         />
-                        <span className="text-gray-700 dark:text-gray-300 font-medium">
-                          {skill}
-                        </span>
-                      </motion.div>
-                    ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
             );
           })}
