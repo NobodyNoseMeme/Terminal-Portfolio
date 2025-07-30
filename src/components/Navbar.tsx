@@ -148,15 +148,10 @@ const Navbar: React.FC<NavbarProps> = ({ onTerminalToggle }) => {
                 className="relative p-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg group overflow-hidden hover-3d-nav"
                 whileHover={{
                   scale: 1.1,
-                  rotateX: -8,
-                  rotateY: 5,
-                  z: 25,
-                  boxShadow: "0 15px 35px rgba(34, 197, 94, 0.5)",
-                  y: -4
+                  y: -2
                 }}
                 whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                style={{ transformStyle: 'preserve-3d' }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 <Terminal size={18} />
                 <motion.div
