@@ -45,7 +45,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
     ],
     skills: [
       "💻 Abdullah's Tech Arsenal:\n\n🎨 Frontend Magic:\n• HTML5, CSS3, JavaScript (Expert)\n• Bootstrap, Tailwind CSS (Advanced)\n• Responsive Design (Master)\n\n⚙️ Backend Power:\n• PHP, Node.js, Express.js\n• RESTful APIs\n\n🗄️ Database Mastery:\n• MySQL, MongoDB\n\n🔧 Tools & More:\n• Git & GitHub, VS Code, Postman\n• C, C++, Python\n• Machine Learning, SEO\n• Agile Methodology\n\nAlways learning, always growing! 📈",
-      "🛠️ Technical Expertise Breakdown:\n\n📊 Proficiency Levels:\n• Web Development: 95% ⭐⭐⭐⭐⭐\n• JavaScript: 90% ⭐⭐⭐⭐��\n• PHP/Backend: 88% ⭐⭐⭐⭐\n• Database Design: 85% ⭐⭐⭐⭐\n• Python/ML: 80% ⭐⭐⭐⭐\n• SEO & Optimization: 88% ⭐⭐⭐⭐\n\n🎯 Currently exploring: AI/ML integration in web apps!"
+      "🛠️ Technical Expertise Breakdown:\n\n📊 Proficiency Levels:\n• Web Development: 95% ⭐⭐⭐⭐⭐\n• JavaScript: 90% ⭐⭐⭐⭐��\n• PHP/Backend: 88% ⭐⭐⭐⭐\n• Database Design: 85% ��⭐⭐⭐\n• Python/ML: 80% ⭐⭐⭐⭐\n• SEO & Optimization: 88% ⭐⭐⭐⭐\n\n🎯 Currently exploring: AI/ML integration in web apps!"
     ],
     projects: [
       "🚀 Abdullah's Project Showcase:\n\n⭐ Featured Projects:\n• MacroMate - AI-powered health & fitness tracker (Final Year Project)\n• XRevStudio.com - Creative agency portfolio with stunning animations\n• ObecheInterior.com - Elegant interior design showcase\n• LevelUpSol.com.pk - Professional corporate website\n• CricketX.net - Enhanced sports platform\n\n💡 Each project represents a unique challenge solved with creativity and cutting-edge tech!",
@@ -318,14 +318,14 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         }}
       >
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 50 }}
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 50 }}
-          transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="fixed inset-4 md:inset-8 lg:inset-16 flex items-center justify-center pointer-events-none"
+          exit={{ opacity: 0, scale: 0.95, y: 30 }}
+          transition={{ type: "spring", damping: 20, stiffness: 400 }}
+          className="fixed inset-2 sm:inset-4 md:inset-8 lg:inset-12 xl:inset-16 flex items-center justify-center pointer-events-none"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="w-full max-w-4xl max-h-[90vh] bg-gray-900 dark:bg-black rounded-2xl shadow-2xl overflow-hidden border border-gray-700 backdrop-blur-sm pointer-events-auto">
+          <div className="w-full max-w-5xl max-h-[95vh] bg-gradient-to-b from-gray-900 to-black rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden border border-gray-600/50 backdrop-blur-sm pointer-events-auto">
             {/* Terminal Header */}
             <div className="flex items-center justify-between px-6 py-4 bg-gray-800 dark:bg-gray-900 border-b border-gray-700">
               <div className="flex items-center space-x-4">
